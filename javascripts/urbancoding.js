@@ -32,28 +32,30 @@ $(document).ready(function(){
     width: currentTab.outerWidth()
   });
   
-  $(".nav li a").mouseenter(function() {
+  var highlightTab = function(e, click) {
     var $$ = $(this);
     highlight.stop()
       .animate({
         left: $$.offset().left,
         width: $$.outerWidth()
       }, 'fast');
-  });
+  };
+  $(".nav li a").mouseenter(highlightTab);
   
-  $(".nav li a").click(function(){
+  var scrollToTab = function(){
     var section = $($(this).attr('href'));
     $(document.body).animate({
       scrollTop: section.offset().top
     });
-  });
+  };
+  $(".nav li a").click(scrollToTab);
   
-  var s1 = { offset: $("#home").offset().top, color: '#53777A' },
-      s2 = { offset: $("#team").offset().top, color: '#ECD078' },
-      s3 = { offset: $("#blog").offset().top, color: '#C02942' },
-      s4 = { offset: $("#contact").offset().top, color: '#542437' };
+  var s1 = { menu: ".home a", offset: $("#home").offset().top, color: '#53777A' },
+      s2 = { menu: ".team a", offset: $("#team").offset().top, color: '#ECD078' },
+      s3 = { menu: ".blog a", offset: $("#blog").offset().top, color: '#C02942' },
+      s4 = { menu: ".contact a", offset: $("#contact").offset().top, color: '#542437' };
   var current = s1;
-  $(window).bind('scroll', function(){
+  $(window).bind('scroll', function(e){
     var windowTop = $(window).scrollTop(),
         to = null;
     if (windowTop >= s1.offset - 1) {
@@ -71,9 +73,12 @@ $(document).ready(function(){
     
     if (to && to !== current) {
       current = to;
-      $('.colored-background').stop().animate({ backgroundColor: to.color });
-      $('.colored-border').stop().animate({ borderTopColor: to.color });
-      $('.colored-text').stop().animate({ color: to.color });
+      var completeColorAnim = function(){
+        highlightTab.call($(to.menu)[0], e, true);
+      }
+      $('.colored-background').stop().animate({ backgroundColor: to.color }, null, null, completeColorAnim);
+      $('.colored-border').stop().animate({ borderTopColor: to.color }, null, null, completeColorAnim);
+      $('.colored-text').stop().animate({ color: to.color }, null, null, completeColorAnim);
     }
   });
   
