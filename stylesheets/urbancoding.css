@@ -191,7 +191,6 @@ section {
 /* BEGIN <TEAM> */
 
 #team {
-  border-color: #ecd078;
   min-height: 758px; /*minus padding*/
   background: #ffd89f;
   position: relative;
@@ -218,6 +217,34 @@ section {
   height: 100%;
   width: 100%;
   z-index: 2;
+}
+
+.team-members {
+  position: absolute;
+  left: 150px;
+  top: 200px;
+  padding-bottom: 180px;
+  
+  border-width: 6px;
+  -moz-border-image: url("../images/yellow-border-stripe.png") 6 round;
+  -webkit-border-image: url("../images/yellow-border-stripe.png") 6 round;
+  border-image: url("../images/yellow-border-stripe.png") 6 round;
+  
+  background-color: #ecd079;
+  background-color: rgba(236, 208, 121, 0.8);
+  background-image: url('../images/partners.png');
+  background-position: bottom center;
+  background-repeat: no-repeat;
+}
+
+  .team-members h2 {
+    font-size: 24px;
+  }
+  
+.team-member {
+  float: left;
+  width: 200px;
+  margin: 10px;
 }
 
 /* END <TEAM> */
