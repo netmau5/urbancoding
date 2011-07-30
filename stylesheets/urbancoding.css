@@ -222,8 +222,7 @@ section {
 .team-members {
   position: absolute;
   left: 150px;
-  top: 200px;
-  padding-bottom: 180px;
+  top: 100px;
   
   border-width: 6px;
   -moz-border-image: url("../images/yellow-border-stripe.png") 6 round;
@@ -232,9 +231,6 @@ section {
   
   background-color: #ecd079;
   background-color: rgba(236, 208, 121, 0.8);
-  background-image: url('../images/partners.png');
-  background-position: bottom center;
-  background-repeat: no-repeat;
 }
 
   .team-members h2 {
@@ -245,7 +241,17 @@ section {
   float: left;
   width: 200px;
   margin: 10px;
+  
+  background-position: top center;
+  background-repeat: no-repeat;
+  padding-top: 210px;
 }
+  .team-member.dave {
+    background-image: url('../images/dave.jpg');
+  }
+  .team-member.trent {
+    background-image: url('../images/trent.jpg');
+  }
 
 /* END <TEAM> */
 
