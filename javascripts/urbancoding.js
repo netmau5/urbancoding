@@ -3,6 +3,7 @@
 
 $(document).ready(function(){
   
+  //section transition animations
   var winHeight = $(window).height();
   
   $("section:not(#home)").each(function(){
@@ -82,9 +83,335 @@ $(document).ready(function(){
     }
   });
   
+  //about us - parallax effects
   $(".sun").parallax({
     coeff: -0.32
   });
+  
+  //blog - posts
+  $.ajax("http://posterous.com/api/2/sites/urbancoding/posts/public", { 
+    dataType: "jsonp", 
+    success: function(r){
+      alert(r[0].title);
+    }
+  });
+  
+  //blog - urban coding three.js
+	var container, interval,
+    camera, scene, renderer,
+    projector, plane, cube, linesMaterial,
+    color = 0, colors = [0xde1f3f],
+    ray, brush, objectHovered,
+    mouse3D, isMouseDown = false, onMouseDownPosition,
+    radious = 1500, theta = 55, onMouseDownTheta = 45, phi = 38, onMouseDownPhi = 60,
+    isShiftDown = false,
+    cubeSize = 50,
+    gridSize = 20,
+    planeSize = cubeSize * gridSize,
+    rendererWidth = parseInt($("#blog .posts").width()),
+    rendererHeight = window.innerHeight;
+
+    init();
+    render();
+
+    function init() {
+
+    	container = document.createElement( 'div' );
+    	container.style.marginLeft = (window.innerWidth - rendererWidth) / 2;
+    	$("#blog").append( container );
+
+    	camera = new THREE.Camera( 40, rendererWidth / rendererHeight, 1, 10000 );
+    	camera.position.x = radious * Math.sin( theta * Math.PI / 360 ) * Math.cos( phi * Math.PI / 360 );
+    	camera.position.y = radious * Math.sin( phi * Math.PI / 360 );
+    	camera.position.z = radious * Math.cos( theta * Math.PI / 360 ) * Math.cos( phi * Math.PI / 360 );
+    	camera.target.position.y = 200;
+
+    	scene = new THREE.Scene();
+
+    	// Grid
+
+    	var geometry = new THREE.Geometry();
+  		    
+    	geometry.vertices.push( new THREE.Vertex( new THREE.Vector3( - planeSize/2, 0, 0 ) ) );
+    	geometry.vertices.push( new THREE.Vertex( new THREE.Vector3( planeSize/2, 0, 0 ) ) );
+
+    	linesMaterial = new THREE.LineColorMaterial( 0x000000, 0.2 );
+
+    	for ( var i = 0; i <= gridSize; i ++ ) {
+
+    		var line = new THREE.Line( geometry, linesMaterial );
+    		line.position.z = ( i * cubeSize ) - (planeSize/2);
+    		scene.addObject( line );
+
+    		var line = new THREE.Line( geometry, linesMaterial );
+    		line.position.x = ( i * cubeSize ) - (planeSize/2);
+    		line.rotation.y = 90 * Math.PI / 180;
+    		scene.addObject( line );
+
+    	}
+
+    	projector = new THREE.Projector();
+
+    	plane = new THREE.Mesh( new Plane( planeSize, planeSize ) );
+    	plane.rotation.x = - 90 * Math.PI / 180;
+    	scene.addObject( plane );
+
+    	cube = new Cube( cubeSize, cubeSize, cubeSize );
+
+    	ray = new THREE.Ray( camera.position, null );
+
+    	brush = new THREE.Mesh( cube, new THREE.MeshColorFillMaterial( colors[ color ], 0.4 ) );
+    	brush.position.y = 2000;
+    	brush.overdraw = true;
+    	scene.addObject( brush );
+
+    	onMouseDownPosition = new THREE.Vector2();
+
+    	// Lights
+
+    	var ambientLight = new THREE.AmbientLight( 0x404040 );
+    	scene.addLight( ambientLight );
+
+    	var directionalLight = new THREE.DirectionalLight( 0xffffff );
+    	directionalLight.position.x = 1;
+    	directionalLight.position.y = 1;
+    	directionalLight.position.z = 0.75;
+    	directionalLight.position.normalize();
+    	scene.addLight( directionalLight );
+
+    	var directionalLight = new THREE.DirectionalLight( 0x808080 );
+    	directionalLight.position.x = - 1;
+    	directionalLight.position.y = 1;
+    	directionalLight.position.z = - 0.75;
+    	directionalLight.position.normalize();
+    	scene.addLight( directionalLight );
+
+    	renderer = new THREE.CanvasRenderer();
+    	renderer.setSize( rendererWidth, rendererHeight );
+
+    	container.appendChild(renderer.domElement);
+
+    	document.addEventListener( 'keydown', onDocumentKeyDown, false );
+    	document.addEventListener( 'keyup', onDocumentKeyUp, false );
+
+    	document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+    	document.addEventListener( 'mousedown', onDocumentMouseDown, false );
+    	document.addEventListener( 'mouseup', onDocumentMouseUp, false );
+    	
+    	var x, y, p, points = [
+    	    [1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 1],
+    	    [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
+    	    [1, 0, 1, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1],
+    	    [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
+    	    [1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1], 
+    	    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    	    [1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1],
+    	    [1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0],
+    	    [1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
+    	    [1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1]
+    	];
+    	
+    	for (z in points) {
+    	  for (x in points[z]) {
+    	    p = points[z][x];
+    	    if (p) { addVoxel(x - 10, 0, z - 5); }
+    	  }
+    	}
+    }
+
+    function onDocumentKeyDown( event ) {
+    	switch( event.keyCode ) {
+    		case 16: isShiftDown = true; interact(); render(); break;
+    	}
+    }
+
+    function onDocumentKeyUp( event ) {
+    	switch( event.keyCode ) {
+    		case 16: isShiftDown = false; interact(); render(); break;
+    	}
+    }
+
+    function onDocumentMouseDown( event ) {
+    	event.preventDefault();
+
+    	isMouseDown = true;
+
+    	onMouseDownTheta = theta;
+    	onMouseDownPhi = phi;
+    	onMouseDownPosition.x = event.clientX;
+    	onMouseDownPosition.y = event.clientY;
+    }
+
+    function onDocumentMouseMove( event ) {
+
+    	event.preventDefault();
+
+    	if ( isMouseDown ) {
+
+    		theta = - ( ( event.clientX - onMouseDownPosition.x ) * 0.5 ) + onMouseDownTheta;
+    		phi = ( ( event.clientY - onMouseDownPosition.y ) * 0.5 ) + onMouseDownPhi;
+
+    		phi = Math.min( 180, Math.max( 0, phi ) );
+
+    		camera.position.x = radious * Math.sin( theta * Math.PI / 360 ) * Math.cos( phi * Math.PI / 360 );
+    		camera.position.y = radious * Math.sin( phi * Math.PI / 360 );
+    		camera.position.z = radious * Math.cos( theta * Math.PI / 360 ) * Math.cos( phi * Math.PI / 360 );
+    		camera.updateMatrix();
+
+    	}
+
+    	mouse3D = projector.unprojectVector( new THREE.Vector3( ( event.clientX / renderer.domElement.width ) * 2 - 1, - ( event.clientY / renderer.domElement.height ) * 2 + 1, 0.5 ), camera );
+    	ray.direction = mouse3D.subSelf( camera.position ).normalize();
+
+    	interact();
+    	render();
+
+    }
+
+    function onDocumentMouseUp( event ) {
+
+    	event.preventDefault();
+
+    	isMouseDown = false;
+
+    	onMouseDownPosition.x = event.clientX - onMouseDownPosition.x;
+    	onMouseDownPosition.y = event.clientY - onMouseDownPosition.y;
+
+    	if ( onMouseDownPosition.length() > 5 ) {
+
+    		return;
+
+    	}
+
+    	var intersect, intersects = ray.intersectScene( scene );
+
+    	if ( intersects.length > 0 ) {
+
+    		intersect = intersects[ 0 ].object == brush ? intersects[ 1 ] : intersects[ 0 ];
+
+    		if ( intersect ) {
+
+    			if ( isShiftDown ) {
+
+    				if ( intersect.object != plane ) {
+
+    					scene.removeObject( intersect.object );
+
+    				}
+
+    			} else {
+
+    				var position = new THREE.Vector3().add( intersect.point, intersect.object.matrixRotation.transform( intersect.face.normal.clone() ) );
+
+    				var voxel = new THREE.Mesh( cube, new THREE.MeshColorFillMaterial( colors[ color ] ) );
+    				voxel.position.x = Math.floor( position.x / 50 ) * cubeSize + 25;
+    				voxel.position.y = Math.floor( position.y / 50 ) * cubeSize + 25;
+    				voxel.position.z = Math.floor( position.z / 50 ) * cubeSize + 25;
+    				voxel.overdraw = true;
+    				scene.addObject( voxel );
+
+    			}
+
+    		}
+
+    	}
+
+    	interact();
+    	render();
+    }
+
+    function setBrushColor( value ) {
+
+    	color = value;
+    	brush.material[ 0 ].color.setHex( colors[ color ] ^ 0x4C000000 );
+
+    	render();
+
+    }
+    
+    function addVoxel(x,y,z) {
+    
+      var voxel = new THREE.Mesh( cube, new THREE.MeshColorFillMaterial( colors[ color ] ) );
+			voxel.position.x = x * cubeSize + 25;
+			voxel.position.y = y * cubeSize + 25;
+			voxel.position.z = z * cubeSize + 25;
+			voxel.overdraw = true;
+			scene.addObject( voxel );
+    }
+
+    function offsetScene( x, z ) {
+
+    	var offset = new THREE.Vector3( x, 0, z ).multiplyScalar( 50 );
+
+    	for ( var i in scene.objects ) {
+
+    		object = scene.objects[ i ];
+
+    		if ( object instanceof THREE.Mesh && object !== plane && object !== brush ) {
+
+    			object.position.addSelf( offset );
+
+    		}
+
+    	}
+
+    	interact();
+    	render();
+
+    }
+
+    function interact() {
+
+    	if ( objectHovered ) {
+
+    		objectHovered.material[ 0 ].color.a = 1;
+    		objectHovered.material[ 0 ].color.updateStyleString();
+    		objectHovered = null;
+
+    	}
+
+    	var position, intersect, intersects = ray.intersectScene( scene );
+
+    	if ( intersects.length > 0 ) {
+
+    		intersect = intersects[ 0 ].object != brush ? intersects[ 0 ] : intersects[ 1 ];
+
+    		if ( intersect ) {
+
+    			if ( isShiftDown ) {
+
+    				if ( intersect.object != plane ) {
+
+    					objectHovered = intersect.object;
+    					objectHovered.material[ 0 ].color.a = 0.5;
+    					objectHovered.material[ 0 ].color.updateStyleString();
+
+    					return;
+
+    				}
+
+    			} else {
+
+    				position = new THREE.Vector3().add( intersect.point, intersect.object.matrixRotation.transform( intersect.face.normal.clone() ) );
+
+    				brush.position.x = Math.floor( position.x / 50 ) * 50 + 25;
+    				brush.position.y = Math.floor( position.y / 50 ) * 50 + 25;
+    				brush.position.z = Math.floor( position.z / 50 ) * 50 + 25;
+
+    				return;
+
+    			}
+
+    		}
+
+    	}
+
+    	brush.position.y = 2000;
+    }
+
+    function render() {
+    	renderer.render( scene, camera );
+    }
   
 });
 
@@ -102,7 +429,7 @@ $(document).ready(function(){
         var opts = $.extend(defaults, options);
         return this.each(function(){
             $(window).bind('scroll', function() {
-                windowTop = $(window).scrollTop();
+                windowTop = $(window).scrollTop();http://api.jquery.com/jQuery.parseJSON/
                 if((windowTop >= opts.start) && (windowTop <= opts.stop)) {
                     newCoord = windowTop * opts.coeff;
                     $$.css({
