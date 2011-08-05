@@ -6,7 +6,7 @@ $(document).ready(function(){
   //section transition animations
   var winHeight = $(window).height();
   
-  $("section:not(#home)").each(function(){
+  $("section#team, section#contact").each(function(){
     var $$ = $(this),
         outerHeight = $$.outerHeight();
     if (outerHeight < winHeight) {
@@ -89,10 +89,37 @@ $(document).ready(function(){
   });
   
   //blog - posts
+  var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+      formatDate = function(dateStr) {
+        var tokens = dateStr.split("/");
+        return ["<span class='day'>", tokens[2], "</span><span class='month'>", months[parseInt(tokens[1] - 1)], "</span>"].join("");
+      }
+  var postTemplate = function(post){
+    var toReturn = [
+      "<article class='post'>",
+        "<h2><a href='", post.full_url, "'>", post.title, "</a></h2>",
+        "<h3>", post.user.display_name, "</h3>",
+        "<div class='date'>", formatDate(post.display_date.split(" ")[0]), "</div>",
+        "{{img}}",
+        "<p>", post.body_excerpt, "</p>",
+      "</article>"
+    ].join('');
+    
+    // if (post.media && post.media.images && post.media.images[0] && post.media.images[0].scaled500) {
+    //       var img = post.media.images[0].scaled500;
+    //       toReturn = toReturn.replace("{{img}}", "<img src='" + post.post_image_115 + "' title='" + img.caption + "'/>");
+    //     }
+    //     else { 
+      toReturn = toReturn.replace("{{img}}", "");
+    // }
+    
+    return toReturn;
+  }
   $.ajax("http://posterous.com/api/2/sites/urbancoding/posts/public", { 
     dataType: "jsonp", 
     success: function(r){
-      alert(r[0].title);
+      $("#post-latest").html(postTemplate(r[0]));
+      $("#posts-other").html(postTemplate(r[1]));    
     }
   });
   
@@ -109,7 +136,7 @@ $(document).ready(function(){
     gridSize = 20,
     planeSize = cubeSize * gridSize,
     rendererWidth = parseInt($("#blog .posts").width()),
-    rendererHeight = window.innerHeight;
+    rendererHeight = 600;
 
     init();
     render();
@@ -118,6 +145,7 @@ $(document).ready(function(){
 
     	container = document.createElement( 'div' );
     	container.style.marginLeft = (window.innerWidth - rendererWidth) / 2;
+    	$(container).addClass("voxel-wrapper");
     	$("#blog").append( container );
 
     	camera = new THREE.Camera( 40, rendererWidth / rendererHeight, 1, 10000 );

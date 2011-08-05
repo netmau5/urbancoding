@@ -261,6 +261,27 @@ section {
   border-color: #c02942;
 }
 
+  #blog .voxel-wrapper { margin-top: -50px; margin-bottom: 80px; }
+
+.posts { padding-top: 20px; }
+
+  .posts h2 a { color: #c02942; font-size: 24px; }
+  .posts h3 { font-size: 14px; color: #666; }
+  .posts img { float: right; border: 2px solid #c02942; margin: 3px; }
+  .posts article { font-size: 16px; position: relative; margin-left: 55px; }
+  .posts .date { 
+    position: absolute;
+    top: 0; 
+    left: -55px; 
+    background: #da334c; 
+    padding: 4px 4px;
+    width: 32px;
+    color: white;
+    -webkit-box-shadow: 1px 1px #871e2e, 2px 2px #871e2e, 3px 3px #871e2e, 4px 4px #871e2e, 5px 5px #871e2e;
+    -moz-box-shadow: 1px 1px #871e2e, 2px 2px #871e2e, 3px 3px #871e2e, 4px 4px #871e2e, 5px 5px #871e2e;
+  }
+  .posts .date .day, .posts .date .month { text-align: center; display: block; }
+
 /* END <BLOG> */
 
 /* BEGIN <CONTACT> */
