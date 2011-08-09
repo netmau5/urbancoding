@@ -335,7 +335,7 @@ section {
   background-image: url("../images/cityscape.gif");
   background-position: bottom center;
   background-repeat: repeat-x;
-  padding-bottom: 400px;
+  padding-bottom: 680px;
 }
 
   #contact .container_16 { margin-top: 20px; }
@@ -355,37 +355,57 @@ section {
   #contact a.button {
     background-color: white;
     color: #aaa;
-    border-color: #aaa;
+    border-color: #a1a1a1;
     font-size: 18px;
     line-height: 42px;
     height: 42px;
+    margin: 0 0 10px 0;
   }
   
   #contact a.button:hover {
     color: #542437;
     border-color: #542437;
   }
+  
+  #contact .form-input {
+    margin-bottom: 8px;
+  }
+  
+  #contact p, 
+  #contact hr {
+    margin-bottom: 16px;
+  }
 
 .contact-us {}
 
   .contact-us label {
     display: block;
-    color: #542437;
+    color: #999;
   }
   
+  .contact-us .name, .contact-us .email { width: 48%; float: left; }
+  .contact-us .name { margin-right: 4%; }
+  
   .contact-us input, .contact-us textarea {
-    border: 1px solid #ddd;
-    font-size: 16px;
-    padding: 4px;
+    border: 1px solid #999;
+    font-size: 14px;
+    padding: 8px;
     width: 100%;
+    box-shadow: inset 0px 0px 85px rgba(0, 0, 0, .5);
+    -webkit-box-shadow: inset 0px 1px 3px rgba(0, 0, 0, .1);
+    -moz-box-shadow: inset 0px 1px 3px
   }
   
     .contact-us input.selected, .contact-us textarea.selected {
       border-color: #542437;
     }
 
-  .contact-us .actions .button {
+  #contact .contact-us .actions .button {
     float: right;
+    font-size: 14px;
+    line-height: 32px;
+    height: 32px;
+    padding: 0 18px;
   }
   
 .media {}
