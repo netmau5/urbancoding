@@ -440,6 +440,11 @@ $(document).ready(function(){
     function render() {
     	renderer.render( scene, camera );
     }
+    
+    //contact form
+    $(".contact-us input, .contact-us textarea")
+        .focus(function() { $(this).addClass("selected"); })
+        .blur(function() { $(this).removeClass("selected"); })
   
 });
 

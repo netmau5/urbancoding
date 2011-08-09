@@ -39,6 +39,37 @@ body {
   line-height: 1.3;
 }
 
+.button {
+  
+}
+
+a.button {
+  display:block; 
+  float:left; 
+  line-height:60px; 
+  height:60px; 
+  padding:0 30px 0 66px; 
+  font-size:20px; 
+  text-decoration:none; 
+  background:#fbe6e6; 
+  border:solid 1px #914207; 
+  text-transform:uppercase; 
+  font-weight:bold; 
+  color:#914207; 
+  margin-right:20px; 
+  -moz-border-radius:5px; 
+  -khtml-border-radius:5px; 
+  -webkit-border-radius:5px; 
+  border-radius:5px;
+  }
+a.button:hover {
+  color:#652e05; 
+  border-color:#652e05; 
+  -moz-box-shadow:0 2px 2px rgba(80, 80, 80, 0.2); 
+  -webkit-box-shadow::0 2px 2px rgba(80, 80, 80, 0.2); 
+  box-shadow:0 2px 2px rgba(80, 80, 80, 0.2);
+}
+
 .colored-text { color: #53777A; }
 
 .colored-border { border-color: #53777A; }
@@ -52,6 +83,18 @@ h1, h2, h3, h4, h5, h6, .copy {
 
 h1, h2, h3, h4, h5, h6, p {
   margin-bottom: 10px;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #fff;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  filter: alpha(opacity = 30);
+  clear: both;
+  height: 0;
+  margin-bottom: 1em;
 }
 
 section { 
@@ -292,7 +335,64 @@ section {
   background-image: url("../images/cityscape.gif");
   background-position: bottom center;
   background-repeat: repeat-x;
-  padding-bottom: 250px;
+  padding-bottom: 400px;
 }
+
+  #contact .container_16 { margin-top: 20px; }
+
+  #contact h2, #contact h3 {
+    color: #542437;
+  }
+  
+  #contact h2 {
+    font-size: 32px;
+  }
+  
+  #contact h3 {
+    font-size: 24px;
+  }
+
+  #contact a.button {
+    background-color: white;
+    color: #aaa;
+    border-color: #aaa;
+    font-size: 18px;
+    line-height: 42px;
+    height: 42px;
+  }
+  
+  #contact a.button:hover {
+    color: #542437;
+    border-color: #542437;
+  }
+
+.contact-us {}
+
+  .contact-us label {
+    display: block;
+    color: #542437;
+  }
+  
+  .contact-us input, .contact-us textarea {
+    border: 1px solid #ddd;
+    font-size: 16px;
+    padding: 4px;
+    width: 100%;
+  }
+  
+    .contact-us input.selected, .contact-us textarea.selected {
+      border-color: #542437;
+    }
+
+  .contact-us .actions .button {
+    float: right;
+  }
+  
+.media {}
+
+  .media a.button {
+    float: none;
+    margin-bottom: 10px;
+  }
 
 /* END <CONTACT> */
