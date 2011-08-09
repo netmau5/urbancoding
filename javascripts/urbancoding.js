@@ -105,13 +105,7 @@ $(document).ready(function(){
       "</article>"
     ].join('');
     
-    // if (post.media && post.media.images && post.media.images[0] && post.media.images[0].scaled500) {
-    //       var img = post.media.images[0].scaled500;
-    //       toReturn = toReturn.replace("{{img}}", "<img src='" + post.post_image_115 + "' title='" + img.caption + "'/>");
-    //     }
-    //     else { 
-      toReturn = toReturn.replace("{{img}}", "");
-    // }
+    toReturn = toReturn.replace("{{img}}", "");
     
     return toReturn;
   }
@@ -219,12 +213,14 @@ $(document).ready(function(){
 
     	container.appendChild(renderer.domElement);
 
-    	document.addEventListener( 'keydown', onDocumentKeyDown, false );
-    	document.addEventListener( 'keyup', onDocumentKeyUp, false );
-
-    	document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-    	document.addEventListener( 'mousedown', onDocumentMouseDown, false );
-    	document.addEventListener( 'mouseup', onDocumentMouseUp, false );
+    	$("#blog").keyup(onDocumentKeyUp)
+    	    .keydown(onDocumentKeyDown)
+    	    .mousemove(onDocumentMouseMove)
+    	    .mousedown(onDocumentMouseDown)
+    	    .mouseup(onDocumentMouseUp);
+    	    
+    	$(document.body).mouseup(onDocumentMouseUp)
+    	    .mousemove(onDocumentMouseMove);
     	
     	var x, y, p, points = [
     	    [1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 1],
@@ -332,9 +328,9 @@ $(document).ready(function(){
     				var position = new THREE.Vector3().add( intersect.point, intersect.object.matrixRotation.transform( intersect.face.normal.clone() ) );
 
     				var voxel = new THREE.Mesh( cube, new THREE.MeshColorFillMaterial( colors[ color ] ) );
-    				voxel.position.x = Math.floor( position.x / 50 ) * cubeSize + 25;
-    				voxel.position.y = Math.floor( position.y / 50 ) * cubeSize + 25;
-    				voxel.position.z = Math.floor( position.z / 50 ) * cubeSize + 25;
+    				voxel.position.x = Math.floor( position.x / cubeSize ) * cubeSize + 25;
+    				voxel.position.y = Math.floor( position.y / cubeSize ) * cubeSize + 25;
+    				voxel.position.z = Math.floor( position.z / cubeSize ) * cubeSize + 25;
     				voxel.overdraw = true;
     				scene.addObject( voxel );
 
@@ -422,9 +418,9 @@ $(document).ready(function(){
 
     				position = new THREE.Vector3().add( intersect.point, intersect.object.matrixRotation.transform( intersect.face.normal.clone() ) );
 
-    				brush.position.x = Math.floor( position.x / 50 ) * 50 + 25;
-    				brush.position.y = Math.floor( position.y / 50 ) * 50 + 25;
-    				brush.position.z = Math.floor( position.z / 50 ) * 50 + 25;
+    				brush.position.x = Math.floor( position.x / cubeSize ) * cubeSize + 25;
+    				brush.position.y = Math.floor( position.y / cubeSize ) * cubeSize + 25;
+    				brush.position.z = Math.floor( position.z / cubeSize ) * cubeSize + 25;
 
     				return;
 
