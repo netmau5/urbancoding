@@ -302,6 +302,7 @@ section {
 
 #blog {
   border-color: #c02942;
+  position: relative;
 }
 
   #blog .voxel-wrapper { margin-top: -50px; margin-bottom: 80px; }
@@ -330,6 +331,7 @@ section {
 /* BEGIN <CONTACT> */
 
 #contact {
+  color: #1a1a1a;
   border-color: #542437;
   background-color: #ffedf4;
   background-image: url("../images/cityscape.gif");
@@ -410,9 +412,22 @@ section {
   
 .media {}
 
-  .media a.button {
+  .media li {
+  }
+  
+    .media li:last-child {
+    }
+    
+  .media p {
+    font-size: 14px;
+  }
+
+  .media a {
     float: none;
     margin-bottom: 10px;
+    line-height: 44px;
+    font-size: 18px;
+    padding-left: 44px;
   }
 
 /* END <CONTACT> */

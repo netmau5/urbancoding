@@ -6,7 +6,7 @@ $(document).ready(function(){
   //section transition animations
   var winHeight = $(window).height();
   
-  $("section#team, section#contact").each(function(){
+  $("section#team, section#contact, section#blog").each(function(){
     var $$ = $(this),
         outerHeight = $$.outerHeight();
     if (outerHeight < winHeight) {
@@ -139,6 +139,8 @@ $(document).ready(function(){
 
     	container = document.createElement( 'div' );
     	container.style.marginLeft = (window.innerWidth - rendererWidth) / 2;
+    	container.style.position = "absolute";
+    	container.style.bottom = "10%";
     	$(container).addClass("voxel-wrapper");
     	$("#blog").append( container );
 
