@@ -413,6 +413,7 @@ section {
 .media {}
 
   .media li {
+    margin-bottom: 10px;
   }
   
     .media li:last-child {
@@ -423,11 +424,43 @@ section {
   }
 
   .media a {
-    float: none;
-    margin-bottom: 10px;
-    line-height: 44px;
+    margin-left: 2px;
+    color: #999;
+    text-decoration: none;
+    display: block;
+    line-height: 42px;
     font-size: 18px;
-    padding-left: 44px;
+    padding-left: 54px;
+    background-image: url('../images/media-icons.png');
+    background-repeat: no-repeat;
   }
+  
+    .media a:hover {
+      color: #542437;
+    }
+  
+    .media li.email a {
+      background-position: 0 0;
+    }
+    
+    .media li.email a:hover {
+      background-position: 0 -50px;
+    }
+    
+    .media li.twitter a {
+      background-position: 0 -100px;
+    }
+    
+    .media li.twitter a:hover {
+      background-position: 0 -150px;
+    }
+    
+    .media li.facebook a {
+      background-position: 0 -200px;
+    }
+    
+    .media li.facebook a:hover {
+      background-position: 0 -250px;
+    }
 
 /* END <CONTACT> */
