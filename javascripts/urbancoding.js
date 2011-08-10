@@ -443,6 +443,19 @@ $(document).ready(function(){
     $(".contact-us input, .contact-us textarea")
         .focus(function() { $(this).addClass("selected"); })
         .blur(function() { $(this).removeClass("selected"); })
+        
+    $(".submit-contact-form").click(function(){
+      $.post($(document.ContactForm).attr('action'), $(document.ContactForm).serialize());
+      
+      var msg = $(document.createElement("div")).html("Thanks for contacting us, we'll be in touch soon!")
+                    .css("text-align", "right")
+                    .hide();
+      
+      $(this).parent().append(msg.fadeIn());
+      $(this).remove();
+      
+      return false;
+    })
   
 });
 
