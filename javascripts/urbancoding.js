@@ -18,6 +18,11 @@ $(document).ready(function(){
     var $$ = $(this),
         outerHeight = $$.outerHeight(),
         servicesHeight = $('.services').outerHeight();
+        
+    if (outerHeight < 600) {
+      $$.height(600); //min height
+      outerHeight = $$.outerHeight();
+    }
     if (outerHeight < (winHeight - servicesHeight)) {
       $$.height(winHeight - servicesHeight - (outerHeight - $$.height()));
     }
