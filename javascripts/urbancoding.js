@@ -3,15 +3,6 @@
 
 $(document).ready(function(){
   
-  //mobile browser fix for position:fixed on title bar
-  var isMobileSafari = navigator.userAgent.match(/(iPod|iPhone|iPad)/);
-  if (isMobileSafari) {
-    var fixTitlePosition = function(){
-      $('#title-bar').css('top', window.pageYOffset);
-    }
-    $(window).scroll(fixTitlePosition);
-  }
-  
   //section transition animations
   var winHeight = $(window).height();
   
@@ -58,11 +49,10 @@ $(document).ready(function(){
   $(".nav li a").mouseenter(highlightTab);
   
   var scrollToTab = function(){
-    var section = $($(this).attr('href')), 
-        opts = isMobileSafari ? { complete: fixTitlePosition } : { }
+    var section = $($(this).attr('href'));
     $(document.body).animate({
       scrollTop: section.offset().top
-    }, opts);
+    });
   };
   $(".nav li a").click(scrollToTab);
   
@@ -472,7 +462,7 @@ $(document).ready(function(){
       $(this).remove();
       
       return false;
-    });
+    })
   
 });
 

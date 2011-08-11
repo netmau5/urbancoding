@@ -107,7 +107,6 @@ section {
 
 #title-bar {
   height: 56px;
-  position: absolute;
   position: fixed;
   width: 100%;
   background: black;
