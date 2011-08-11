@@ -147,8 +147,10 @@ $(document).ready(function(){
     rendererWidth = parseInt($("#blog .posts").width()),
     rendererHeight = 600;
 
-    init();
-    render();
+    if (!isMobileSafari) {
+      init();
+      render();
+    }
 
     function init() {
 
