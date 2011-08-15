@@ -8,6 +8,7 @@
   6. <TEAM>
   7. <BLOG>
   8. <CONTACT>
+  9. <MOBILE>
   
   PALETTE
   1. Blue     #53777A (home)
@@ -481,3 +482,9 @@ section { }
     }
 
 /* END <CONTACT> */
+
+/* BEGIN <MOBILE> */
+
+section#mobile { display: none; }
+    
+/* END <MOBILE> */
