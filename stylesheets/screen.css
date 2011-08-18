@@ -192,10 +192,10 @@ section { }
     top: 50%;
     position: absolute;
     
-    padding: 130px 460px 130px 0;
+    padding: 140px 460px 140px 0;
     background-image: url("../images/city.jpg");
     background-repeat: no-repeat;
-    background-position: 480px -80px;
+    background-position: 480px -105px;
   }
   
     .mission-statement h1 {
