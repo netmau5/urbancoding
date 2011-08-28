@@ -8,7 +8,9 @@ $(document).ready(function(){
     	siblings = $$.siblings(),
 	siblingHeight = 0;
 	
-    siblings.map(function(){ return $(this).outerHeight() }).each(function(){ siblingHeight += this; });
+    siblings.map(function(){ return $(this).outerHeight() }).each(function(){ 
+        siblingHeight += this;
+    });
 
     if (winHeight > ($$.outerHeight() + siblingHeight)) {
       $$.height(winHeight - ($$.outerHeight() - $$.height()) - siblingHeight);
@@ -94,12 +96,14 @@ $(document).ready(function(){
     
     return toReturn;
   }
-  $.ajax("http://posterous.com/api/2/sites/urbancoding/posts/public", { 
-    dataType: "jsonp", 
-    success: function(r){
-      $("#post-latest").html(postTemplate(r[0]));
-      $("#posts-other").html(postTemplate(r[1]));    
-    }
+  $('.page-blog').each(function(){
+      $.ajax("http://posterous.com/api/2/sites/urbancoding/posts/public", { 
+        dataType: "jsonp", 
+        success: function(r){
+          $("#post-latest").html(postTemplate(r[0]));
+          $("#posts-other").html(postTemplate(r[1]));    
+        }
+      });
   });
   
   //blog - urban coding three.js
