@@ -105,7 +105,7 @@ $(document).ready(function(){
         }
       });
   });
-    
+     
     //contact form
     $(".contact-us input, .contact-us textarea")
         .focus(function() { $(this).addClass("selected"); })
