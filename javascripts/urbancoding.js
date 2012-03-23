@@ -97,7 +97,7 @@ $(document).ready(function(){
     return toReturn;
   }
   $('.page-blog').each(function(){
-      $.ajax("http://posterous.com/api/2/sites/urbancoding/posts/public", { 
+      $.ajax("http://posterous.com/api/2/sites/191104/posts/public?tag=urban-coding", { 
         dataType: "jsonp", 
         success: function(r){
           $("#post-latest").html(postTemplate(r[0]));
