@@ -1,65 +1,324 @@
----
-layout: template
-bodyClass: page-home
----
-<div id="title-bar" class="colored-border">
-    <div class="title-bar-wrapper container_16">
-    <div class="title-bar-inner">
-        <h1 class='title-urban'>Urban</h1>
-        <h1 class='title-separator'>:</h1>
-		<h1 class='title-coding colored-text'>Coding</h1>
-		<div class="nav-highlight colored-background"></div>
-		<ol class="nav">
-			<li class="home selected"><a href="index.html"></a></li>
-			<li class="team"><a href="team.html">Team</a></li>
-			<li class="blog"><a href="blog.html">Blog</a></li>
-			<li class="contact"><a href="contact.html">Contact</a></li>
-		</ol>
-    </div>
-    </div>
-</div>
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Urban Coding Software Development</title>
+	<link rel="stylesheet" href="stylesheets/urbancoding.css"/> 
+	<link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow:regular,bold' rel='stylesheet' type='text/css'>
+    
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
 	
-<section id="home">
-	
-	<div class="container_16">
-	<div class="mission-statement copy">
-		<h1>We build business applications</h1>
-		We partner with enterprises and small businesses alike to create beautiful, 
-		functional, and easy to use software. Harness the power of technology to take 
-		your business to the next level. Leave the bit twiddling to us.
-	</div>
-	</div>
-	
-</section>
+	<script type="text/javascript">
 
-<div class="services">
-	<div class="container_16 clearfix">
-	<div class="service service-web-development alpha grid_5">
-		<h2>Web Development</h2>
-		<p>
-			Application development services using world-class platforms that 
-			best suites your needs. We have expertise in Java, .NET, Ruby,
-			user interface, usability, and visual design.
-		</p>
-	</div>
-	<div class="service service-mobile-applications grid_6">
-		<h2>Mobile Applications</h2>
-		<p>
-			We offer development of native iPhone & iPad apps. Need every platform?
-			No problem! We specialize in cross-platform solutions for 
-			iOS, Android, and Windows Phone 7 which can be deployed as a native
-			app or through the browser.
-		</p>
-	</div>
-	<div class="service service-unique-partnerships omega grid_5">
-		<h2>Unique Partnerships</h2>
-		<p>
-			We only take projects in which we can partner with our customers to build a product. 
-			This creates an incredible value proposition for our clients as 
-			their solution will improve over time with an unmatched cost of ownership.
-		</p>
-	</div>
-	</div>
-</div>
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-933690-7']);
+      _gaq.push(['_trackPageview']);
 
-<img src="images/city.jpg" alt="Social network link thumbnail" style="display: none; height: 0px;" />	
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+</head>
+<body>
+	
+	<header class='primary'>
+		<div class='container'>
+			<h1 class='logo'>
+			</h1>
+			<h1 class='name'>
+				Urban Coding
+			</h1>
+			<nav>
+				<ul>
+					<li>
+						<a href="#services" alt='Services'>Services</a>
+						<span class='subtext'>What We Do</span>
+					</li>
+					<li>
+						<a href="#portfolio" alt='Portfolio'>Portfolio</a>
+						<span class='subtext'>What We've Done</span>
+					</li>
+					<li>
+						<a href="#services" alt='Services'>About Us</a>
+						<span class='subtext'>Who We Are</span>
+					</li>
+					<li>
+						<a href="#services" alt='Services'>Contact</a>
+						<span class='subtext'>Let's Get Started</span>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	
+	<section class='home'>
+		<div class='container'>
+			<h2>We Craft Software</h2>
+			<div class='elevator-pitch'>
+				<span class='development'>Web and Mobile Development</span>
+				<span class='cms'>Content Management Systems</span>
+				<span class='ui'>Friendly User Interfaces</span>
+				<span class='graphic-design'>Creative Graphic Design</span>
+				<span class='how'>Simple, Delightful, Useful</span>
+			</div>
+		</div>
+		<div class='sky'></div>
+		<div class='ground'></div>
+	</section>
+	
+	<section class='services'>
+		<div class='container'>
+			<div class='primary row'>
+				<div class='websites span6'>
+					<h3>Websites for Anyone.</h3>
+					<div class='subtitle'>Unbelievably simple administration.</div>
+					<p>
+						Our blog, brand, and landing pages are so easy to administer 
+						that your fourth grader could do it. But he won't, because 
+						you'll finally get to create your own content instead of 
+						phoning it in to IT. Our best-in-class content management 
+						systems do all the heavy lifting.
+					</p>
+				</div>
+				<div class='applications span6'>
+					<h3>Magical Applications.</h3>
+					<div class='subtitle'>Simple, delightful, and useful software.</div>
+					<p>
+						We create custom software and stand by our work. Our craftsmen 
+						build web applications, native iOS apps, and mobile websites 
+						packaged with stunning interfaces and illustrations. We want 
+						to make you look good. It'll be our little secret.
+					</p>
+				</div>
+			</div>
+			<div class='primary row'>
+				<div class='ui span6'>
+					<h3>Meaningful Experiences.</h3>
+					<div class='subtitle'>We speak your user's language.</div>
+					<p>
+						Users are the most important part of our equation. We develop clear, 
+						familiar, and responsive user interfaces and know how to test our 
+						work to prove it works. 
+					</p>
+				</div>
+				<div class='consulting span6'>
+					<h3>Professional Consulting.</h3>
+					<div class='subtitle'>Serious engineering on demand.</div>
+					<p>
+						Our developers can augment your in-house team in one of our many 
+						specialities including Java, Groovy, Ruby, and Javascript development.
+					</p>
+				</div>
+			</div>
+			<div class='secondary row'>
+				<div class='span2'>
+					<h4>Content Management</h4>
+					<ul>
+						<li>Blogs</li>
+						<li>Brand Pages</li>
+						<li>Landing Pages</li>
+						<li>Wordpress</li>
+						<li>Refinery</li>
+					</ul>
+				</div>
+				<div class='span2'>
+					<h4>Development</h4>
+					<ul>
+						<li>Web Applications</li>
+						<li>Web Design, Illustration</li>
+						<li>Web Standards</li>
+						<li>iOS Development</li>
+						<li>Analytics</li>
+					</ul>
+				</div>
+				<div class='span2'>
+					<h4>User Experience</h4>
+					<ul>
+						<li>User Interfaces</li>
+						<li>Information Architecture</li>
+						<li>User Profiles</li>
+						<li>Usability Testing</li>
+						<li>A/B Testing</li>
+					</ul>
+				</div>
+				<div class='span2'>
+					<h4>Branding</h4>
+					<ul>
+						<li>Corporate Identity</li>
+						<li>Logos</li>
+						<li>Brand Pages</li>
+						<li>Style Guides</li>
+						<li>Copywriting</li>
+					</ul>
+				</div>
+				<div class='span2'>
+					<h4>Graphic Design</h4>
+					<ul>
+						<li>Letterheads</li>
+						<li>Business Cards</li>
+						<li>Brochures</li>
+						<li>Posters</li>
+						<li>Email Templates</li>
+					</ul>
+				</div>
+				<div class='span2'>
+					<h4>Environmental</h4>
+					<ul>
+						<li>Identity</li>
+						<li>Displays</li>
+						<li>Signage</li>
+						<li>Wayfinding</li>
+						<li>Murals</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<section class='portfolio'>
+		<div class='container'>
+			<h2>Portfolio</h2>
+			<div class='projects'>
+				<div class='visuals'></div>
+				<div class='control-bar'>
+					<h3></h3>
+					<ul></ul>
+					<a href='#'>Next Project</a>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<section class='about-us'>
+		<div class='container'>
+			<header>
+				<h2>About Us</h2>
+				<ul class='statements'>
+					<li class='our-values selected'><a href="#our-values" data-index='0'>Our Values</a></li>
+					<li class='how-we-work'><a href="#how-we-work" data-index='1'>How We Work</a></li>
+				</ul>
+				<ul class='mates'>
+					<li class='dave-jafari'><a href='#dave-jafari' data-index='2'>Dave Jafari</a></li>
+					<li class='trent-kocurek'><a href='#trent-kocurek' data-index='3'>Trent Kocurek</a></li>
+					<li class='despi-raggousis'><a href='#despi-raggousis' data-index='4'>Trent Kocurek</a></li>
+				</ul>
+			</header>
+		</div>
+		<div class='content carousel'>
+			<div class='carousel-inner'>
+				
+				<div class='active item our-values'>
+					<div class='container'>
+					<div class='copy'>
+						<h3>Our Values</h3>
+						<p>
+							What we're about isn't software or interfaces, we're about creating happiness. 
+							Happiness is born from simple, delightful, and useful experiences. Any product 
+							that can be these three things is magical and has the power to make people's life 
+							better. That's what we believe.
+						</p>
+						<p>
+							Our customers care about getting every detail right. Applications should be easy to 
+							understand and full of helping hands to keep users on the right path to a job well 
+							done. It's easy to keep adding, but it takes discipline to trim the cruft. We work 
+							best with people who care about solving a problem simply rather than populating a 
+							bullet list of features.
+						</p>
+						<p>
+							We're here for the long run and want to be companions to our customers, both in our 
+							own products and for those of our clients. Jobs are for paychecks; relationships are 
+							for teams. We want to be part of yours.
+						</p>	
+					</div>
+					</div>
+				</div>
+				
+				<div class='item how-we-work'>
+					<div class='container'>
+					<div class='copy'>
+						<h3>How We Work</h3>
+						<p>
+							Our belief in simplicity isn't just part of what we build but how we build it. 
+							Every project is handled by a small team and we ask that you have one too. Big 
+							groups often fail to make decisions or act nimbly. 
+						</p>
+						<p>
+							We treat every relationship like a partnership instead of a requirements black 
+							box. Our work is developed in short, concrete iterations to quickly react to 
+							ever-evolving nature of software. Each step of the way, we strive to clearly 
+							communicate where we're at and what we've done to maximize every opportunity 
+							to nail your vision.
+						</p>
+						<p>
+							We constantly question our previous decisions and challenge ourselves to find a 
+							better way. After every project, we review our work internally and with our 
+							clients to ensure that every time you work with us, it will be the best experience 
+							you've ever had. Building a long-term relationship with each client is far more
+							important to us than a hurried job that results in mediocrity.
+						</p>	
+					</div>
+					</div>
+				</div>
+				
+				<div class='item dave-jafari'>
+					<div class='container'>
+					<div class='copy'>
+						<div class='role'>Mad Hatter</div>
+						<h3>Dave Jafari</h3>
+						<p>
+							Lead software magician with 5 years of experience in enterprise development. 
+							Trent is our .NET maestro, iOS resident, and Ruby gemcutter. He loves craft 
+							beer, drowning in rapids, and racquetball.
+						</p>	
+					</div>
+					</div>
+				</div>
+				
+				<div class='item trent-kocurek'>
+					<div class='container'>
+					<div class='copy'>
+						<div class='role'>Craftsman</div>
+						<h3>Trent Kocurek</h3>
+						<p>
+							Lead software magician with 5 years of experience in enterprise development. 
+							Trent is our .NET maestro, iOS resident, and Ruby gemcutter. He loves craft 
+							beer, drowning in rapids, and racquetball.
+						</p>	
+					</div>
+					</div>
+				</div>
+				
+				<div class='item despi-raggousis'>
+					<div class='container'>
+					<div class='copy'>
+						<div class='role'>Designasaurus Rex</div>
+						<h3>Despi Raggousis</h3>
+						<p>
+							Lead software magician with 5 years of experience in enterprise development. 
+							Trent is our .NET maestro, iOS resident, and Ruby gemcutter. He loves craft 
+							beer, drowning in rapids, and racquetball.
+						</p>	
+					</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<section class='contact'>
+		
+	</section>
+	
+	<footer>
+		
+	</footer>
+	
+	
+	<script src="javascripts/urbancoding-ck.js" type="text/javascript"></script>
+</body>
+</html>
