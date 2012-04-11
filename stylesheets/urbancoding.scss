@@ -544,14 +544,45 @@ section.about-us {
       font-weight: $font-weight-normal;
     }
     
-    .our-values, .how-we-work {
+    .our-values {
       
       .copy {
-        height: unquote($height - 40 + "px");
-        padding: 40px 500px 0 0;
-        background: url("../images/aboutus-desk.png") bottom right no-repeat;
+        height: unquote($height - 30 + "px");
+        padding: 30px 500px 0 0;
+        position: relative;
         
         h3 { text-align: center; }
+        
+        .headline { 
+          position: absolute;
+          left: 510px;
+          top: 130px;
+          font-size: 36px;
+          line-height: 52px;
+          font-style: italic;
+          color: #999;
+          width: 410px;
+        }
+        
+      }
+    }
+    
+    .how-we-work {
+      
+      .copy {
+        height: unquote($height - 30 + "px");
+        padding: 30px 60px 0 440px;
+        position: relative;
+        
+        h3 { text-align: center; }
+        
+        .headline { 
+          position: absolute;
+          left: 125px;
+          top: 30px;
+          @include box-shadow(1, #000);
+        }
+        
       }
     }
     
