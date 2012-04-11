@@ -11273,13 +11273,23 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
 (function(){
   
   var portfolio = [
-    { title: "Sparkmuse", smallImage: "images/portfolio-sparkmuse-small.jpg", overview: "sparkmuse.html" }
+    { title: "Selected Logos", smallImage: "images/portfolio-logos-small.jpg", overview: "sparkmuse.html" },
+    { title: "Jenx", smallImage: "images/portfolio-jenx-small.jpg", overview: "sparkmuse.html" },
+    { title: "Sparkmuse", smallImage: "images/portfolio-sparkmuse-small.jpg", overview: "sparkmuse.html" },
+    { title: "Princeton Public Library", smallImage: "images/portfolio-princeton-small.jpg", overview: "sparkmuse.html" },
+    { title: "The Spark Foundry", smallImage: "images/portfolio-thesparkfoundry-small.jpg", overview: "sparkmuse.html" },
+    { title: "DBlog Posterous Theme", smallImage: "images/portfolio-dblog-small.jpg", overview: "sparkmuse.html" },
+    { title: "The Spark Foundry", smallImage: "images/portfolio-thesparkfoundry-small.jpg", overview: "sparkmuse.html" },
+    { title: "Miami Beach", smallImage: "images/portfolio-miamibeach-small.jpg", overview: "sparkmuse.html" },
+    { title: "Christmas Planner", smallImage: "images/portfolio-christmasplanner-small.jpg", overview: "sparkmuse.html" },
+    { title: "News Falcon", smallImage: "images/portfolio-newsfalcon-small.jpg", overview: "sparkmuse.html" }
   ]; 
   
   var controlBar = $('section.portfolio .projects .control-bar'),
       visualsContainer = $('section.portfolio .projects .visuals');
       linkContainer = $('ul', controlBar),
-      titleContainer = $('h3', controlBar);
+      titleContainer = $('h3', controlBar),
+      currentIndex = 0;
   
   function selectVisual(index){
     var piece = portfolio[index];
@@ -11305,15 +11315,17 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
     $('<li/>').attr('data-index', i).appendTo(linkContainer);
   });
   $('li', linkContainer).click(function(){
-    selectVisual(parseInt($(this).attr('data-index')));
+    currentIndex = parseInt($(this).attr('data-index'));
+    selectVisual(currentIndex);
+    return false;
   });
   linkContainer.css({ marginLeft: -linkContainer.width()/2 });
   
-  var currentIndex = 0;
   $('section.portfolio .projects .control-bar a').click(function(){
     currentIndex++;
     if (currentIndex == portfolio.length) { currentIndex = 0 };
     selectVisual(currentIndex);
+    return false;
   });
   
   selectVisual(0);

@@ -250,14 +250,16 @@ section.portfolio {
     position: relative;
     left: -2px; }
     section.portfolio .projects .visuals {
-      height: 475px; }
+      height: 475px;
+      position: relative; }
       section.portfolio .projects .visuals .visual {
-        text-align: center;
         height: 475px;
-        position: relative; }
+        position: absolute;
+        width: 945px; }
         section.portfolio .projects .visuals .visual img {
           position: absolute;
-          bottom: 0; }
+          bottom: 0;
+          left: 63px; }
         section.portfolio .projects .visuals .visual::before {
           background-image: url("../images/portfolio-visual-shadow-left.png");
           content: "";

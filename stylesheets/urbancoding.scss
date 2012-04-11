@@ -329,15 +329,17 @@ section.portfolio {
     
       .visuals {
         height: 475px;
+        position: relative;
         
         .visual {
-          text-align: center;
           height: 475px;
-          position: relative;
+          position: absolute;
+          width: 945px;
           
           img {
             position: absolute;
             bottom: 0;
+            left: 63px;
           }
           
           &::before {
