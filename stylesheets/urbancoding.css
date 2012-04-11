@@ -32,10 +32,55 @@ p {
 
 /* END <TYPOGRAPHY> */
 /* BEGIN <GENERAL> */
+a.button {
+  display: block;
+  float: left;
+  line-height: 60px;
+  height: 60px;
+  padding: 0 30px 0 66px;
+  font-size: 20px;
+  letter-spacing: 1px;
+  text-decoration: none;
+  background: #fbe6e6;
+  border: solid 1px #914207;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #914207;
+  margin-right: 20px;
+  -moz-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px; }
+
+a.button:hover {
+  color: #652e05;
+  border-color: #652e05;
+  -moz-box-shadow: 0 2px 2px rgba(80, 80, 80, 0.2);
+  -webkit-box-shadow: 0 2px 2px rgba(80, 80, 80, 0.2);
+  box-shadow: 0 2px 2px rgba(80, 80, 80, 0.2); }
+
+a.button:active {
+  box-shadow: 0;
+  -webkit-box-shadow: 0;
+  -moz-box-shadow: 0;
+  position: relative;
+  top: 2px; }
+
 ol, ul {
   list-style-type: none;
   margin: 0;
   padding: 0; }
+
+hr {
+  border: 0;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #fff;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  filter: alpha(opacity=30);
+  clear: both;
+  height: 0;
+  margin-bottom: 1em; }
 
 section {
   border-top: 1px solid rgba(255, 255, 255, 0.3);
@@ -369,8 +414,110 @@ section.about-us {
 
 /* END <ABOUT US> */
 /* BEGIN <CONTACT> */
-section.contact {
-  height: 200px; }
+.contact {
+  color: #1a1a1a;
+  border-color: #542437;
+  background-color: #ffedf4;
+  background-image: url("../images/cityscape.gif");
+  background-position: bottom center;
+  background-repeat: repeat-x;
+  padding: 30px 0 320px 0; }
+
+.contact .container_16 {
+  padding-top: 20px; }
+
+.contact h2, .contact h3 {
+  color: #542437; }
+
+.contact h2 {
+  font-size: 32px; }
+
+.contact h3 {
+  font-size: 24px; }
+
+.contact a.button:hover {
+  color: #542437;
+  border-color: #542437; }
+
+.contact .form-input {
+  margin-bottom: 8px; }
+
+.contact p,
+.contact hr {
+  margin-bottom: 16px; }
+
+.contact-us label {
+  display: block;
+  color: #999;
+  font-size: 18px; }
+
+.contact-us .name, .contact-us .email {
+  width: 48%;
+  float: left; }
+
+.contact-us .name {
+  margin-right: 4%; }
+
+.contact-us input, .contact-us textarea {
+  border: 1px solid #999;
+  font-size: 16px;
+  padding: 8px 6px;
+  width: 287px;
+  box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: inset 0px 1px 1px; }
+
+.contact-us textarea {
+  width: 608px; }
+
+.contact-us input.selected, .contact-us textarea.selected {
+  border-color: #542437; }
+
+.contact .contact-us .actions .button {
+  background-color: white;
+  color: #aaa;
+  border-color: #a1a1a1;
+  font-size: 16px;
+  line-height: 32px;
+  height: 32px;
+  margin: 0 0 10px 0;
+  float: right;
+  padding: 0 18px; }
+
+.media li {
+  margin-bottom: 10px; }
+
+.media a {
+  margin-left: 2px;
+  color: #999;
+  text-decoration: none;
+  display: block;
+  line-height: 42px;
+  font-size: 18px;
+  padding-left: 54px;
+  background-image: url("../images/media-icons.png");
+  background-repeat: no-repeat; }
+
+.media a:hover {
+  color: #542437; }
+
+.media li.email a {
+  background-position: 0 0; }
+
+.media li.email a:hover {
+  background-position: 0 -50px; }
+
+.media li.twitter a {
+  background-position: 0 -100px; }
+
+.media li.twitter a:hover {
+  background-position: 0 -150px; }
+
+.media li.facebook a {
+  background-position: 0 -200px; }
+
+.media li.facebook a:hover {
+  background-position: 0 -250px; }
 
 /* END <CONTACT> */
 /* BEGIN <FOOTER> */
