@@ -477,12 +477,16 @@ section.about-us {
   background-color: white;
   color: #aaa;
   border-color: #a1a1a1;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 32px;
   height: 32px;
   margin: 0 0 10px 0;
   float: right;
   padding: 0 18px; }
+
+.contact .contact-us .actions .button:hover {
+  border-color: #542437;
+  color: #542437; }
 
 .media li {
   margin-bottom: 10px; }
