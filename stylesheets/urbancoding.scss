@@ -127,7 +127,10 @@ header.primary {
   color: white;
   border-bottom: $border-transparent-dark;
   padding: 10px 0;
+  z-index: 999;
   @include inset-box-shadow(0, -3);
+
+  h1 { cursor: pointer; }
 
   h1.logo {
     background: url('../images/logo-header.png') center center no-repeat;
@@ -171,6 +174,11 @@ header.primary {
         display: block;
         color: #cecece;
       }
+    }
+    
+    li.active {
+      a { font-weight: bold; }
+      .subtext { color: white; }
     }
   }
 
@@ -223,9 +231,9 @@ section.home {
     
     span { display: block; }
     
-    .development { color: #00d4f2; letter-spacing: 1px; word-spacing: 4px; }
+    .development { color: #00daf9; letter-spacing: 1px; word-spacing: 4px; }
     .cms { color: #2ab2c3; letter-spacing: 1px; }
-    .ui { color: #00d4f2; letter-spacing: 4px; word-spacing: 1px; }
+    .ui { color: #00daf9; letter-spacing: 4px; word-spacing: 1px; }
     .graphic-design { color: #2ab2c3; letter-spacing: 5px; word-spacing: -1px; }
     .how { color: #ff8400; letter-spacing: 3px; word-spacing: 4px; } 
   }
@@ -758,8 +766,14 @@ section.about-us {
    @import "tablet"
 }
 
-// Portrait tablet to landscape and desktop
-@media (min-width: 768px) and (max-width: 980px) { }
-
-// Large desktop
-@media (min-width: 1200px) {  }
+// landscape tablet and desktop
+@media (min-width: 768px) { 
+  header.primary {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+  section.home {
+    margin-top: 69px;
+  }
+}

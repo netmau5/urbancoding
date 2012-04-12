@@ -9669,131 +9669,7 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
   })
 
 }( window.jQuery );
-/* =============================================================
- * bootstrap-scrollspy.js v2.0.2
- * http://twitter.github.com/bootstrap/javascript.html#scrollspy
- * =============================================================
- * Copyright 2012 Twitter, Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- * ============================================================== */
 
-!function ( $ ) {
-
-  "use strict"
-
-  /* SCROLLSPY CLASS DEFINITION
-   * ========================== */
-
-  function ScrollSpy( element, options) {
-    var process = $.proxy(this.process, this)
-      , $element = $(element).is('body') ? $(window) : $(element)
-      , href
-    this.options = $.extend({}, $.fn.scrollspy.defaults, options)
-    this.$scrollElement = $element.on('scroll.scroll.data-api', process)
-    this.selector = (this.options.target
-      || ((href = $(element).attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '')) //strip for ie7
-      || '') + ' .nav li > a'
-    this.$body = $('body').on('click.scroll.data-api', this.selector, process)
-    this.refresh()
-    this.process()
-  }
-
-  ScrollSpy.prototype = {
-
-      constructor: ScrollSpy
-
-    , refresh: function () {
-        this.targets = this.$body
-          .find(this.selector)
-          .map(function () {
-            var href = $(this).attr('href')
-            return /^#\w/.test(href) && $(href).length ? href : null
-          })
-
-        this.offsets = $.map(this.targets, function (id) {
-          return $(id).position().top
-        })
-      }
-
-    , process: function () {
-        var scrollTop = this.$scrollElement.scrollTop() + this.options.offset
-          , offsets = this.offsets
-          , targets = this.targets
-          , activeTarget = this.activeTarget
-          , i
-
-        for (i = offsets.length; i--;) {
-          activeTarget != targets[i]
-            && scrollTop >= offsets[i]
-            && (!offsets[i + 1] || scrollTop <= offsets[i + 1])
-            && this.activate( targets[i] )
-        }
-      }
-
-    , activate: function (target) {
-        var active
-
-        this.activeTarget = target
-
-        this.$body
-          .find(this.selector).parent('.active')
-          .removeClass('active')
-
-        active = this.$body
-          .find(this.selector + '[href="' + target + '"]')
-          .parent('li')
-          .addClass('active')
-
-        if ( active.parent('.dropdown-menu') )  {
-          active.closest('li.dropdown').addClass('active')
-        }
-      }
-
-  }
-
-
- /* SCROLLSPY PLUGIN DEFINITION
-  * =========================== */
-
-  $.fn.scrollspy = function ( option ) {
-    return this.each(function () {
-      var $this = $(this)
-        , data = $this.data('scrollspy')
-        , options = typeof option == 'object' && option
-      if (!data) $this.data('scrollspy', (data = new ScrollSpy(this, options)))
-      if (typeof option == 'string') data[option]()
-    })
-  }
-
-  $.fn.scrollspy.Constructor = ScrollSpy
-
-  $.fn.scrollspy.defaults = {
-    offset: 10
-  }
-
-
- /* SCROLLSPY DATA-API
-  * ================== */
-
-  $(function () {
-    $('[data-spy="scroll"]').each(function () {
-      var $spy = $(this)
-      $spy.scrollspy($spy.data())
-    })
-  })
-
-}( window.jQuery );
 /* ===========================================================
  * bootstrap-tooltip.js v2.0.2
  * http://twitter.github.com/bootstrap/javascript.html#tooltips
@@ -11264,20 +11140,314 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
 
 
 /*********************************************** 
+     Begin jquery-scrollto.js 
+***********************************************/ 
+
+/**
+ * @depends jquery
+ * @name jquery.scrollto
+ * @package jquery-scrollto {@link http://www.balupton/projects/jquery-scrollto}
+ */
+
+/**
+ * jQuery Aliaser
+ */
+(function($){
+
+	/**
+	 * jQuery ScrollTo (balupton edition)
+	 * @version 1.0.1
+	 * @date August 31, 2010
+	 * @since 0.1.0, August 27, 2010
+     * @package jquery-scrollto {@link http://www.balupton/projects/jquery-scrollto}
+	 * @author Benjamin "balupton" Lupton {@link http://www.balupton.com}
+	 * @copyright (c) 2010 Benjamin Arthur Lupton {@link http://www.balupton.com}
+	 * @license GNU Affero General Public License version 3 {@link http://www.gnu.org/licenses/agpl-3.0.html}
+	 */
+	if ( !($.ScrollTo||false) ) {
+		$.ScrollTo = {
+			/**
+			 * The Default Configuration
+			 */
+			config: {
+				duration: 400,
+				easing: 'swing',
+				callback: undefined,
+				durationMode: 'each'
+			},
+
+			/**
+			 * Configure ScrollTo
+			 */
+			configure: function(options){
+				var ScrollTo = $.ScrollTo;
+
+				// Apply Options to Config
+				$.extend(ScrollTo.config, options||{});
+
+				// Chain
+				return this;
+			},
+
+			/**
+			 * Perform the Scroll Animation for the Collections
+			 * We use $inline here, so we can determine the actual offset start for each overflow:scroll item
+			 * Each collection is for each overflow:scroll item
+			 */
+			scroll: function(collections, config){
+				var ScrollTo = $.ScrollTo;
+
+				// Determine the Scroll
+	    		var	collection = collections.pop(),
+					$container = collection.$container,
+					$target = collection.$target;
+
+				// Prepare the Inline Element of the Container
+				var $inline = $('<span/>').css({
+					'position': 'absolute',
+					'top': '0px',
+					'left': '0px'
+				});
+				var position = $container.css('position');
+
+				// Insert the Inline Element of the Container
+				$container.css('position','relative');
+				$inline.appendTo($container);
+
+				// Determine the Offsets
+				var	startOffset = $inline.offset().top,
+					targetOffset = $target.offset().top,
+					offsetDifference = targetOffset - startOffset;
+
+				// Reset the Inline Element of the Container
+				$inline.remove();
+				$container.css('position',position);
+
+				// Prepare the callback
+				var callback = function(event){
+					// Check
+					if ( collections.length === 0 ) {
+						// Callback
+						if ( typeof config.callback === 'function' ) {
+							config.callback.apply(this,[event]);
+						}
+					}
+					else {
+						// Recurse
+						ScrollTo.scroll(collections,config);
+					}
+					// Return true
+					return true;
+				};
+
+				// Perform the Scroll
+				$container.animate({
+					'scrollTop': offsetDifference+'px'
+				}, config.duration, config.easing, callback);
+
+				// Return true
+				return true;
+			},
+
+			/**
+			 * ScrollTo the Element using the Options
+			 */
+			fn: function(options){
+				var ScrollTo = $.ScrollTo;
+
+				// Prepare
+				var	$target = $(this);
+				if ( $target.length === 0 ) {
+					// Chain
+					return this;
+				}
+
+				// Fetch
+				var	$container = $target.parent(),
+					collections = [];
+
+				// Handle Options
+				config = $.extend({},ScrollTo.config,options);
+
+				// Cycle through the containers
+				while ( $container.length === 1 && !$container.is('body') && !($container.get(0) === document) ) {
+					// Check Container
+					var container = $container.get(0);
+					if ( $container.css('overflow-y') !== 'visible' && container.scrollHeight !== container.clientHeight ) {
+						// Push the Collection
+						collections.push({
+							'$container': $container,
+							'$target': $target
+						});
+						// Update the Target
+						$target = $container;
+					}
+					// Update the Container
+					$container = $container.parent();
+				}
+
+				// Add the final collection
+				collections.push({
+					'$container': $($.browser.msie ? 'html' : 'body'),
+					'$target': $target
+				});
+
+				// Adjust the Config
+				if ( config.durationMode === 'all' ) {
+					config.duration /= collections.length;
+				}
+
+				// Handle
+				ScrollTo.scroll(collections,config);
+
+				// Chain
+				return this;
+			},
+
+			/**
+			 * Construct
+			 */
+			construct: function(options){
+				var ScrollTo = $.ScrollTo;
+
+				// Apply our jQuery Function
+				$.fn.ScrollTo = ScrollTo.fn;
+
+				// Apply our Options to the Default Config
+				ScrollTo.config = $.extend(ScrollTo.config,options);
+
+				// Chain
+				return this;
+			}
+		};
+
+		// Construct It
+		$.ScrollTo.construct();
+	}
+	else {
+		window.console.warn("$.ScrollTo has already been defined...");
+	}
+
+})(jQuery);
+
+/*********************************************** 
+     Begin jquery-scrollspy.js 
+***********************************************/ 
+
+/*!
+ * jQuery Scrollspy Plugin
+ * Author: @sxalexander
+ * Licensed under the MIT license
+ */
+
+
+;(function ( $, window, document, undefined ) {
+
+    $.fn.extend({
+      scrollspy: function ( options ) {
+        
+          var defaults = {
+            min: 0,
+            max: 0,
+            mode: 'vertical',
+            buffer: 0,
+            container: window,
+            onEnter: options.onEnter ? options.onEnter : [],
+            onLeave: options.onLeave ? options.onLeave : [],
+            onTick: options.onTick ? options.onTick : []
+          }
+          
+          var options = $.extend( {}, defaults, options );
+
+          return this.each(function (i) {
+
+              var element = this;
+              var o = options;
+              var $container = $(o.container);
+              var mode = o.mode;
+              var buffer = o.buffer;
+              var enters = leaves = 0;
+              var inside = false;
+                            
+              /* add listener to container */
+              $container.bind('scroll', function(e){
+                  var position = {top: $(this).scrollTop(), left: $(this).scrollLeft()};
+                  var xy = (mode == 'vertical') ? position.top + buffer : position.left + buffer;
+                  var max = o.max;
+                  var min = o.min;
+                  
+                  /* fix max */
+                  if($.isFunction(o.max)){
+                    max = o.max();
+                  }
+
+                  /* fix max */
+                  if($.isFunction(o.min)){
+                    min = o.min();
+                  }
+
+                  if(max == 0){
+                      max = (mode == 'vertical') ? $container.height() : $container.outerWidth() + $(element).outerWidth();
+                  }
+                  
+                  /* if we have reached the minimum bound but are below the max ... */
+                  if(xy >= o.min && xy <= max){
+                    /* trigger enter event */
+                    if(!inside){
+                       inside = true;
+                       enters++;
+                       
+                       /* fire enter event */
+                       $(element).trigger('scrollEnter', {position: position})
+                       if($.isFunction(o.onEnter)){
+                         o.onEnter(element, position);
+                       }
+                      
+                     }
+                     
+                     /* triger tick event */
+                     $(element).trigger('scrollTick', {position: position, inside: inside, enters: enters, leaves: leaves})
+                     if($.isFunction(o.onTick)){
+                       o.onTick(element, position, inside, enters, leaves);
+                     }
+                  }else{
+                    
+                    if(inside){
+                      inside = false;
+                      leaves++;
+                      /* trigger leave event */
+                      $(element).trigger('scrollLeave', {position: position, leaves:leaves})
+
+                      if($.isFunction(o.onLeave)){
+                        o.onLeave(element, position);
+                      }
+                    }
+                  }
+              }); 
+
+          });
+      }
+
+    })
+
+    
+})( jQuery, window );
+
+/*********************************************** 
      Begin urbancoding.js 
 ***********************************************/ 
 
-//@codekit-prepend "jquery-1.7.2.js", "bootstrap.js", "underscore.js";
+//@codekit-prepend "jquery-1.7.2.js", "bootstrap.js", "underscore.js", "jquery-scrollto.js", "jquery-scrollspy.js";
+
 
 //initialize portfolio
-(function(){
+$(function(){
   
   var portfolio = [
     { title: "Selected Logos", smallImage: "images/portfolio-logos-small.jpg", overview: "sparkmuse.html" },
     { title: "Jenx", smallImage: "images/portfolio-jenx-small.jpg", overview: "sparkmuse.html" },
     { title: "Sparkmuse", smallImage: "images/portfolio-sparkmuse-small.jpg", overview: "sparkmuse.html" },
     { title: "Princeton Public Library", smallImage: "images/portfolio-princeton-small.jpg", overview: "sparkmuse.html" },
-    { title: "The Spark Foundry", smallImage: "images/portfolio-thesparkfoundry-small.jpg", overview: "sparkmuse.html" },
     { title: "DBlog Posterous Theme", smallImage: "images/portfolio-dblog-small.jpg", overview: "sparkmuse.html" },
     { title: "The Spark Foundry", smallImage: "images/portfolio-thesparkfoundry-small.jpg", overview: "sparkmuse.html" },
     { title: "Miami Beach", smallImage: "images/portfolio-miamibeach-small.jpg", overview: "sparkmuse.html" },
@@ -11330,10 +11500,10 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
   
   selectVisual(0);
   
-})();
+});
 
 //about us
-(function(){
+$(function(){
   
   var sections = $('.carousel').carousel({interval: 99999999999999999}).carousel('pause');
   var headerNavLi = $('.about-us header li');
@@ -11346,4 +11516,37 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
     return false;
   });
   
-})();
+});
+
+
+//navigation
+$(function(){
+  
+  $('header.primary h1').click(function(){
+    $(document.body).ScrollTo({duration: 500});
+  })
+  
+  var li = $('header.primary nav li');
+  $('a', li).click(function(e){
+    var $this = $(this);
+    e.stopPropagation();
+    $($this.attr('href')).ScrollTo( {duration:500} );
+    return false;
+  });
+  
+  var headerHeight = $('header.primary').outerHeight();
+  $('section').each(function(){
+    var $this = $(this);
+    $this.scrollspy({
+      min: $this.offset().top - headerHeight,
+      max: $this.offset().top + $this.outerHeight() - headerHeight - 1,
+      onEnter: function(element, position) {
+        $('a[href=#' + $(element).attr('id') + ']', li).parent().addClass('active');
+      },
+      onLeave: function(element, position) {
+        $('a[href=#' + $(element).attr('id') + ']', li).parent().removeClass('active');
+      }
+    });
+  })
+  
+});

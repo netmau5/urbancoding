@@ -1,14 +1,14 @@
-//@codekit-prepend "jquery-1.7.2.js", "bootstrap.js", "underscore.js";
+//@codekit-prepend "jquery-1.7.2.js", "bootstrap.js", "underscore.js", "jquery-scrollto.js", "jquery-scrollspy.js";
+
 
 //initialize portfolio
-(function(){
+$(function(){
   
   var portfolio = [
     { title: "Selected Logos", smallImage: "images/portfolio-logos-small.jpg", overview: "sparkmuse.html" },
     { title: "Jenx", smallImage: "images/portfolio-jenx-small.jpg", overview: "sparkmuse.html" },
     { title: "Sparkmuse", smallImage: "images/portfolio-sparkmuse-small.jpg", overview: "sparkmuse.html" },
     { title: "Princeton Public Library", smallImage: "images/portfolio-princeton-small.jpg", overview: "sparkmuse.html" },
-    { title: "The Spark Foundry", smallImage: "images/portfolio-thesparkfoundry-small.jpg", overview: "sparkmuse.html" },
     { title: "DBlog Posterous Theme", smallImage: "images/portfolio-dblog-small.jpg", overview: "sparkmuse.html" },
     { title: "The Spark Foundry", smallImage: "images/portfolio-thesparkfoundry-small.jpg", overview: "sparkmuse.html" },
     { title: "Miami Beach", smallImage: "images/portfolio-miamibeach-small.jpg", overview: "sparkmuse.html" },
@@ -61,10 +61,10 @@
   
   selectVisual(0);
   
-})();
+});
 
 //about us
-(function(){
+$(function(){
   
   var sections = $('.carousel').carousel({interval: 99999999999999999}).carousel('pause');
   var headerNavLi = $('.about-us header li');
@@ -77,4 +77,37 @@
     return false;
   });
   
-})();
+});
+
+
+//navigation
+$(function(){
+  
+  $('header.primary h1').click(function(){
+    $(document.body).ScrollTo({duration: 500});
+  })
+  
+  var li = $('header.primary nav li');
+  $('a', li).click(function(e){
+    var $this = $(this);
+    e.stopPropagation();
+    $($this.attr('href')).ScrollTo( {duration:500} );
+    return false;
+  });
+  
+  var headerHeight = $('header.primary').outerHeight();
+  $('section').each(function(){
+    var $this = $(this);
+    $this.scrollspy({
+      min: $this.offset().top - headerHeight,
+      max: $this.offset().top + $this.outerHeight() - headerHeight - 1,
+      onEnter: function(element, position) {
+        $('a[href=#' + $(element).attr('id') + ']', li).parent().addClass('active');
+      },
+      onLeave: function(element, position) {
+        $('a[href=#' + $(element).attr('id') + ']', li).parent().removeClass('active');
+      }
+    });
+  })
+  
+});
