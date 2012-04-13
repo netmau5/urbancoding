@@ -2,19 +2,31 @@
 
 $(function(){
   
-  var windowHeight = $(window).height(),
-      windowWidth = $(window).width();
-  function expandToWindowHeight(selector, max) {
+  function expandToWindowHeight(selector, max, modifier) {
     var node = $(selector),
+        windowHeight = $(window).height(),
         outerHeight = node.outerHeight(true),
-        newTotal = node.height() + windowHeight - outerHeight;
+        newTotal = node.height() + windowHeight - outerHeight + (modifier || 0);
+        
+    if (!node.data('min-height')) {
+      node.data('min-height', node.height())
+    }
     if (outerHeight < windowHeight) {
       node.height(newTotal > max ? max : newTotal);
+    } else {
+      newTotal = node.height() + windowHeight - outerHeight + (modifier || 0);
+      var min = node.data('min-height');
+      node.height(newTotal > min ? newTotal : min);
     }
   }
   
   //home area
-  expandToWindowHeight('section.home');
+  function expandHome() {
+    expandToWindowHeight('section.home', 818);
+  }
+  expandHome();
+  $(window).on('resize', _(expandHome).debounce(300));
+  
   var interval = 0, speed = 50;
   $('.elevator-pitch span').each(function(){
     var $this = $(this);
@@ -31,6 +43,7 @@ $(function(){
       
   function moveCloud(currentPosition) {
     var $this = $(this),
+        windowWidth = $(window).width(),
         cloudWidth = $this.width(),
         currentPosition = currentPosition || -cloudWidth,
         travelDistance = windowWidth + cloudWidth,
@@ -48,7 +61,7 @@ $(function(){
   setTimeout(function(){
     _([1,2,3,4]).each(function(i){
       var cloud = $('<div/>').addClass('cloud cloud-' + i).data('depth', i).appendTo(homeSection),
-          currentPosition = Math.random() * windowWidth;
+          currentPosition = Math.random() * $(window).width();
     
       moveCloud.call(cloud.hide().fadeIn(5000), currentPosition);
     })
@@ -164,5 +177,29 @@ $(function(){
       }
     });
   });
+  
+  //contact us
+  $(".contact input, .contact textarea")
+      .focus(function() { $(this).addClass("selected"); })
+      .blur(function() { $(this).removeClass("selected"); })
+      
+  $(".submit-contact-form").click(function(){
+    $.post($(document.ContactForm).attr('action'), $(document.ContactForm).serialize());
+    
+    var msg = $(document.createElement("div")).html("Thanks for contacting us, we'll be in touch soon!")
+                  .css("text-align", "right")
+                  .hide();
+    
+    $(this).parent().append(msg.fadeIn());
+    $(this).remove();
+    
+    return false;
+  });
+  
+  function expandContact() {
+    expandToWindowHeight('section.contact', 9999, -$('header.primary').outerHeight(true));
+  }
+  expandContact();
+  $(window).on('resize', _(expandContact).debounce(300));
   
 });

@@ -264,7 +264,7 @@ section.home {
   
   .elevator-pitch {
     position: absolute;
-    top: 80px;
+    top: 15%;
     left: 40px;
     font-size: 32px;
     font-weight: $font-weight-bold;
@@ -751,16 +751,22 @@ section.about-us {
       border-color: #542437;
     }
 
-  .contact .contact-us .actions .button {
-    background-color: white;
-    color: #aaa;
-    border-color: #a1a1a1;
+  .contact .contact-us .actions {
     font-size: 14px;
     line-height: 32px;
     height: 32px;
-    margin: 0 0 10px 0;
-    float: right;
-    padding: 0 18px;
+    
+    .button {
+      color: #aaa;
+      font-size: 14px;
+      line-height: 32px;
+      height: 32px;
+      border-color: #a1a1a1;
+      background-color: white;
+      margin: 0 0 10px 0;
+      float: right;
+      padding: 0 18px;
+    }
   }
   
     .contact .contact-us .actions .button:hover {

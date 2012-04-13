@@ -196,7 +196,7 @@ section.home {
     text-indent: -9999px; }
   section.home .elevator-pitch {
     position: absolute;
-    top: 80px;
+    top: 15%;
     left: 40px;
     font-size: 32px;
     font-weight: 700;
@@ -566,16 +566,20 @@ section.about-us {
 .contact-us input.selected, .contact-us textarea.selected {
   border-color: #542437; }
 
-.contact .contact-us .actions .button {
-  background-color: white;
-  color: #aaa;
-  border-color: #a1a1a1;
+.contact .contact-us .actions {
   font-size: 14px;
   line-height: 32px;
-  height: 32px;
-  margin: 0 0 10px 0;
-  float: right;
-  padding: 0 18px; }
+  height: 32px; }
+  .contact .contact-us .actions .button {
+    color: #aaa;
+    font-size: 14px;
+    line-height: 32px;
+    height: 32px;
+    border-color: #a1a1a1;
+    background-color: white;
+    margin: 0 0 10px 0;
+    float: right;
+    padding: 0 18px; }
 
 .contact .contact-us .actions .button:hover {
   border-color: #542437;
