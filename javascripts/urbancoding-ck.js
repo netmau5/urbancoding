@@ -11509,8 +11509,19 @@ $(function(){
     })
   }, interval);
   
+  //services
+  $('section.services .major').each(function(){
+    var $this = $(this);
+    $this.css({ opacity: 0.25 }).scrollspy({
+      min: $('section.home').outerHeight() + $('section.home').offset().top - $(window).height() + 300,
+      max: 25000,
+      onEnter: function(element, position) {
+        $this.animate({ opacity: 1 }, 1200);
+      }
+    });
+  });
 
-  //initialize portfolio
+  // portfolio
   var portfolio = [
     { title: "Selected Logos", smallImage: "images/portfolio-logos-small.jpg", overview: "sparkmuse.html" },
     { title: "Jenx", smallImage: "images/portfolio-jenx-small.jpg", overview: "sparkmuse.html" },
@@ -11607,6 +11618,6 @@ $(function(){
         $('a[href=#' + $(element).attr('id') + ']', li).parent().removeClass('active');
       }
     });
-  })
+  });
   
 });
