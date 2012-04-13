@@ -11470,7 +11470,7 @@ $(function(){
   
   //home area
   expandToWindowHeight('section.home');
-  var interval = 0, speed = 30;
+  var interval = 0, speed = 50;
   $('.elevator-pitch span').each(function(){
     var $this = $(this);
     setTimeout(function(){
