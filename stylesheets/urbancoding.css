@@ -410,6 +410,36 @@ section.about-us {
       margin-bottom: 8px;
       font-family: "PT Sans Narrow", "Verdana";
       font-weight: 400; }
+    section.about-us .content .social a {
+      float: left;
+      height: 48px;
+      width: 48px;
+      text-indent: -9999px;
+      background-repeat: no-repeat;
+      background-image: url("../images/media-icons.png"); }
+    section.about-us .content .social a:active {
+      position: relative;
+      top: 2px; }
+    section.about-us .content .social .linked-in {
+      background-position: 0 -300px; }
+    section.about-us .content .social .linked-in:hover {
+      background-position: 0 -350px; }
+    section.about-us .content .social .google-plus {
+      background-position: 0 -400px; }
+    section.about-us .content .social .google-plus:hover {
+      background-position: 0 -450px; }
+    section.about-us .content .social .github {
+      background-position: 0 -500px; }
+    section.about-us .content .social .github:hover {
+      background-position: 0 -550px; }
+    section.about-us .content .social .blog {
+      background-position: 0 -600px; }
+    section.about-us .content .social .blog:hover {
+      background-position: 0 -650px; }
+    section.about-us .content .social .twitter {
+      background-position: 0 -700px; }
+    section.about-us .content .social .twitter:hover {
+      background-position: 0 -750px; }
     section.about-us .content .our-values .copy {
       height: 590px;
       padding: 30px 500px 0 0;
@@ -440,7 +470,7 @@ section.about-us {
         box-shadow: 0px 1px 3px black; }
     section.about-us .content .trent-kocurek .copy {
       height: 500px;
-      padding: 150px 450px 0 30px;
+      padding: 120px 450px 20px 30px;
       background: url("../images/aboutus-trentk.png") 625px 40px no-repeat; }
 
 /* END <ABOUT US> */

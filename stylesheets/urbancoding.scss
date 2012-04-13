@@ -554,6 +554,32 @@ section.about-us {
       font-weight: $font-weight-normal;
     }
     
+    .social {
+      a {
+        float: left;
+        height: 48px;
+        width: 48px;
+        text-indent: -9999px;
+        
+        background-repeat: no-repeat;
+        background-image: url('../images/media-icons.png');
+      }
+      
+      a:active { position: relative; top: 2px; }
+      
+      .linked-in { background-position: 0 -300px; }
+      .linked-in:hover { background-position: 0 -350px; }
+      .google-plus { background-position: 0 -400px; }
+      .google-plus:hover { background-position: 0 -450px; }
+      .github { background-position: 0 -500px; }
+      .github:hover { background-position: 0 -550px; }
+      .blog { background-position: 0 -600px; }
+      .blog:hover { background-position: 0 -650px; }
+      .twitter { background-position: 0 -700px; }
+      .twitter:hover { background-position: 0 -750px; }
+      
+    }
+    
     .our-values {
       
       .copy {
@@ -600,7 +626,7 @@ section.about-us {
       
       .copy {
         height: 500px;
-        padding: 150px 450px 0 30px;
+        padding: 120px 450px 20px 30px;
         background: url('../images/aboutus-trentk.png') 625px unquote($height - 580 + "px") no-repeat;
       }
       
