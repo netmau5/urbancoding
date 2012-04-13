@@ -11434,15 +11434,83 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
 })( jQuery, window );
 
 /*********************************************** 
+     Begin jquery-typewriter.js 
+***********************************************/ 
+
+$.fn.typewriter = function(speed) {
+    this.each(function() {
+        var $ele = $(this), str = $ele.text(), progress = 0;
+        $ele.text('');
+        var timer = setInterval(function() {
+            $ele.text(str.substring(0, ++progress) + (progress < str.length? '_' : ''));
+            if (progress >= str.length) clearInterval(timer);
+        }, (speed || 50));
+    });
+    return this;
+};
+
+/*********************************************** 
      Begin urbancoding.js 
 ***********************************************/ 
 
-//@codekit-prepend "jquery-1.7.2.js", "bootstrap.js", "underscore.js", "jquery-scrollto.js", "jquery-scrollspy.js";
+//@codekit-prepend "jquery-1.7.2.js", "bootstrap.js", "underscore.js", "jquery-scrollto.js", "jquery-scrollspy.js", "jquery-typewriter.js";
 
-
-//initialize portfolio
 $(function(){
   
+  var windowHeight = $(window).height(),
+      windowWidth = $(window).width();
+  function expandToWindowHeight(selector, max) {
+    var node = $(selector),
+        outerHeight = node.outerHeight(true),
+        newTotal = node.height() + windowHeight - outerHeight;
+    if (outerHeight < windowHeight) {
+      node.height(newTotal > max ? max : newTotal);
+    }
+  }
+  
+  //home area
+  expandToWindowHeight('section.home');
+  var interval = 0, speed = 30;
+  $('.elevator-pitch span').each(function(){
+    var $this = $(this);
+    setTimeout(function(){
+      $this.show().typewriter(speed);
+    }, interval);
+    interval += ($this.text().length + 5) * speed;
+  });
+  
+  var cloudCount = 1,
+      homeSection = $('section.home'),
+      rate = 120000,
+      rateModifier = -10;
+      
+  function moveCloud(currentPosition) {
+    var $this = $(this),
+        cloudWidth = $this.width(),
+        currentPosition = currentPosition || -cloudWidth,
+        travelDistance = windowWidth + cloudWidth,
+        startPoint = -cloudWidth,
+        endPoint = windowWidth,
+        distanceToEnd = endPoint - currentPosition,
+        adjustment = 1 - 0.15 * $this.data('depth'),
+        duration = adjustment * rate * (endPoint - currentPosition) / travelDistance;
+    
+    $this.css({ left: currentPosition + 'px' })
+        .animate({ left: '+=' + distanceToEnd }, duration, 'linear', moveCloud)
+        .dequeue();
+  }
+      
+  setTimeout(function(){
+    _([1,2,3,4]).each(function(i){
+      var cloud = $('<div/>').addClass('cloud cloud-' + i).data('depth', i).appendTo(homeSection),
+          currentPosition = Math.random() * windowWidth;
+    
+      moveCloud.call(cloud.hide().fadeIn(5000), currentPosition);
+    })
+  }, interval);
+  
+
+  //initialize portfolio
   var portfolio = [
     { title: "Selected Logos", smallImage: "images/portfolio-logos-small.jpg", overview: "sparkmuse.html" },
     { title: "Jenx", smallImage: "images/portfolio-jenx-small.jpg", overview: "sparkmuse.html" },
@@ -11500,11 +11568,8 @@ $(function(){
   
   selectVisual(0);
   
-});
-
-//about us
-$(function(){
   
+  //about us
   var sections = $('.carousel').carousel({interval: 99999999999999999}).carousel('pause');
   var headerNavLi = $('.about-us header li');
   
@@ -11516,12 +11581,7 @@ $(function(){
     return false;
   });
   
-});
-
-
-//navigation
-$(function(){
-  
+  //navigation
   $('header.primary h1').click(function(){
     $(document.body).ScrollTo({duration: 500});
   })

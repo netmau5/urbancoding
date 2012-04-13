@@ -192,19 +192,61 @@ section.home {
   
   position: relative;
   border-top: 0;
+  background: url('../images/home-bg-ground.jpg') bottom left repeat-x;
+  
+  .cloud {
+    background-image: url('../images/home-clouds.png');
+    background-repeat: no-repeat;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+  }
+  
+  .cloud-1 {
+    height: 90px;
+    width: 215px;
+    background-position: 0 0;
+    top: 22%;
+  }
+  
+  .cloud-2 {
+    height: 45px;
+    width: 130px;
+    background-position: 0 -87px;
+    top: 50%;
+  }
+  
+  .cloud-3 {
+    height: 50px;
+    width: 130px;
+    background-position: 0 -132px;
+    top: 55%;
+  }
+  
+  .cloud-4 {
+    height: 28px;
+    width: 52px;
+    background-position: 0 -187px;
+    top: 60%;
+  }
   
   .container { 
     position: relative; 
     z-index: 2; 
-    height: 625px;
-    background: url('../images/home-city.png') 0px 131px no-repeat transparent; 
+    min-height: 625px;
+    height: 100%;
+    background: url('../images/home-city.png') 0 131px no-repeat transparent;
+    background-position-y: bottom;
   }
   
   .sky {
     position: absolute;
     top: 0;
     background: url('../images/home-bg-sky.jpg') top left repeat-x;
-    height: 572px;
+    min-height: 572px;
+    height: 100%;
+    z-index: -2;
     width: 100%;
   }
   
