@@ -123,7 +123,9 @@ header.primary {
       padding: 0 0 0 20px;
       border-left: 1px solid rgba(255, 255, 255, 0.3); }
       header.primary nav li:first-child {
-        border-left: 0; }
+        border-left: 0;
+        margin-left: 0;
+        padding-left: 0; }
       header.primary nav li a {
         font-size: 18px;
         color: white; }
@@ -514,7 +516,7 @@ section.about-us {
   background-image: url("../images/cityscape.gif");
   background-position: bottom center;
   background-repeat: repeat-x;
-  padding: 30px 0 320px 0; }
+  padding: 15px 0 320px 0; }
 
 .contact .container_16 {
   padding-top: 20px; }
@@ -623,6 +625,96 @@ section.about-us {
 /* END <CONTACT> */
 /* BEGIN <FOOTER> */
 /* END <FOOTER> */
+@media (max-width: 480px) {
+  body {
+    padding: 0; }
+
+  header.primary {
+    text-align: center; }
+    header.primary h1 {
+      float: none !important;
+      text-align: center; }
+    header.primary h1.name {
+      position: static;
+      width: 300px;
+      height: 24px;
+      line-height: 24px;
+      margin: 6px auto 0 auto; }
+    header.primary h1.logo {
+      background-position: center center;
+      width: 100%; }
+    header.primary nav {
+      display: none;
+      float: none; }
+      header.primary nav ul {
+        width: 340px;
+        margin: 0 auto; }
+      header.primary nav li {
+        border-left: 0; }
+        header.primary nav li .subtext {
+          display: none; }
+
+  section.home {
+    padding-bottom: 69px;
+    overflow: hidden; }
+    section.home .container {
+      background: none;
+      min-height: 0; }
+    section.home h2 {
+      display: none; }
+    section.home .elevator-pitch {
+      font-size: 20px;
+      position: static;
+      text-align: center;
+      padding-top: 20px;
+      height: 200px; }
+    section.home .sky {
+      min-height: 0; }
+    section.home .cloud-1 {
+      top: -99999px; }
+    section.home .cloud-2 {
+      top: 15%; }
+    section.home .cloud-3 {
+      top: 35%; }
+    section.home .cloud-4 {
+      top: 55%; }
+
+  section.services .primary {
+    border-bottom: 0;
+    margin: 0;
+    padding: 0; }
+    section.services .primary .major {
+      margin: 20px 15px;
+      padding: 20px 0;
+      background: none;
+      padding: 0;
+      border-bottom: 1px solid #d7d7d7; }
+    section.services .primary .ui {
+      margin-top: 0; }
+    section.services .primary .consulting {
+      border-bottom: 0; }
+  section.services .secondary {
+    display: none; }
+
+  section.portfolio, section.about-us {
+    display: none; }
+
+  section.contact .contact-us {
+    margin: 0 15px; }
+    section.contact .contact-us form .name {
+      display: none; }
+    section.contact .contact-us form .email {
+      float: none;
+      width: 100%; }
+      section.contact .contact-us form .email input {
+        width: 278px; }
+    section.contact .contact-us form .message {
+      float: none;
+      width: 100%; }
+      section.contact .contact-us form .message textarea {
+        width: 278px; }
+  section.contact .media {
+    display: none; } }
 @media (min-width: 768px) {
   header.primary {
     position: fixed;

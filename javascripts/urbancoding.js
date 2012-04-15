@@ -9,12 +9,13 @@ $(function(){
         newTotal = node.height() + windowHeight - outerHeight + (modifier || 0);
         
     if (!node.data('min-height')) {
-      node.data('min-height', node.height())
+      node.data('min-height', node.height());
     }
-    if (outerHeight < windowHeight) {
+    
+    //alert(node.height() + " + " + windowHeight + " - " + outerHeight + " + " + (modifier||0) + " = " + newTotal)
+    if (outerHeight < windowHeight && newTotal >= node.data('min-height')) {
       node.height(newTotal > max ? max : newTotal);
     } else {
-      newTotal = node.height() + windowHeight - outerHeight + (modifier || 0);
       var min = node.data('min-height');
       node.height(newTotal > min ? newTotal : min);
     }
@@ -22,19 +23,26 @@ $(function(){
   
   //home area
   function expandHome() {
-    expandToWindowHeight('section.home', 818);
+    var header = $('header.primary'),
+        accountForHeader = header.css('position') !== 'fixed';
+    expandToWindowHeight('section.home', 818, accountForHeader ? -header.outerHeight(true) + 1: 0);
   }
-  expandHome();
-  $(window).on('resize', _(expandHome).debounce(300));
   
-  var interval = 0, speed = 50;
-  $('.elevator-pitch span').each(function(){
+  var interval = 0, 
+      speed = 50
+      pitch = $('.elevator-pitch span');
+  pitch.each(function(){
     var $this = $(this);
     setTimeout(function(){
       $this.show().typewriter(speed);
     }, interval);
     interval += ($this.text().length + 5) * speed;
   });
+  
+  pitch.show();
+  expandHome();
+  $(window).on('resize', _(expandHome).debounce(300));
+  pitch.hide();
   
   var cloudCount = 1,
       homeSection = $('section.home'),
@@ -68,10 +76,11 @@ $(function(){
   }, interval);
   
   //services
+  var accountForHeader = header.css('position') !== 'fixed';
   $('section.services .major').each(function(){
     var $this = $(this);
     $this.css({ opacity: 0.25 }).scrollspy({
-      min: $('section.home').outerHeight() + $('section.home').offset().top - $(window).height() + 300,
+      min: $('section.home').outerHeight() + $('section.home').offset().top - $(window).height() + 300 + (accountForHeader ? -header.outerHeight(true) + 1: 0),
       max: 25000,
       onEnter: function(element, position) {
         $this.animate({ opacity: 1 }, 1200);

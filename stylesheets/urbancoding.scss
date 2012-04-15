@@ -161,7 +161,7 @@ header.primary {
       padding: 0 0 0 20px;
       border-left: $border-transparent-light;
       
-      &:first-child { border-left: 0; }
+      &:first-child { border-left: 0; margin-left: 0; padding-left: 0; }
       
       a {
         font-size: 18px;
@@ -688,7 +688,7 @@ section.about-us {
   background-image: url("../images/cityscape.gif");
   background-position: bottom center;
   background-repeat: repeat-x;
-  padding: 30px 0 320px 0;
+  padding: 15px 0 320px 0;
 }
 
   .contact .container_16 { padding-top: 20px; }

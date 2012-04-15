@@ -1,1 +1,119 @@
+body { padding: 0; }
 
+header.primary {
+  
+  text-align: center;
+  
+  h1 {
+    float: none !important;
+    text-align: center;
+  }
+  
+  h1.name {
+    position: static;
+    width: 300px;
+    height: 24px;
+    line-height: 24px;
+    margin: 6px auto 0 auto;
+  }
+  
+  h1.logo { 
+    background-position: center center;
+    width: 100%;
+  }
+  
+  nav {
+    display: none;
+    float: none;
+    
+    ul {
+      width: 340px;
+      margin: 0 auto;
+    }
+    
+    li { 
+      border-left: 0; 
+      
+      .subtext { display: none; }  
+    }
+  }
+}
+
+section.home {
+  
+  padding-bottom: 69px;
+  overflow: hidden;
+  
+  .container { 
+    background: none; 
+    min-height: 0;
+  }
+  
+  h2 { display: none; }
+  
+  .elevator-pitch {
+    font-size: 20px;
+    position: static;
+    text-align: center;
+    padding-top: 20px;
+    height: 200px;
+  }
+  
+  .sky { min-height: 0; }
+  .cloud-1 { top: -99999px; }
+  .cloud-2 { top: 15%; }
+  .cloud-3 { top: 35%; }
+  .cloud-4 { top: 55%; }
+  
+}
+
+section.services {
+  
+  .primary {
+    border-bottom: 0; 
+    margin: 0;
+    padding: 0;
+    
+    .major { 
+      margin: 20px 15px;
+      padding: 20px 0;
+      background: none; 
+      padding: 0;
+      border-bottom: 1px solid #d7d7d7;
+    }
+    
+    .ui {
+      margin-top: 0;
+    }
+    
+    .consulting {
+      border-bottom: 0;
+    }
+  }
+  
+  .secondary {
+    display: none;
+  }
+}
+
+section.portfolio, section.about-us { display: none; }
+
+section.contact {
+  .contact-us {
+    margin: 0 15px;
+    
+    form .name { display: none; }
+    form .email { 
+      float: none; width: 100%;
+      
+      input { width: 278px; }
+    }
+    form .message {
+      float: none; width: 100%;
+      
+      textarea { width: 278px; }
+    }
+  }
+  
+  .media { display: none; }
+}
