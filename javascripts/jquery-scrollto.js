@@ -1,186 +1,209 @@
-/**
- * @depends jquery
- * @name jquery.scrollto
- * @package jquery-scrollto {@link http://www.balupton/projects/jquery-scrollto}
- */
+/*!
+ * jQuery Smooth Scroll Plugin v1.4.5
+ *
+ * Date: Sun Mar 11 18:17:42 2012 EDT
+ * Requires: jQuery v1.3+
+ *
+ * Copyright 2012, Karl Swedberg
+ * Dual licensed under the MIT and GPL licenses (just like jQuery):
+ * http://www.opensource.org/licenses/mit-license.php
+ * http://www.gnu.org/licenses/gpl.html
+ *
+ *
+ *
+ *
+*/
 
-/**
- * jQuery Aliaser
- */
-(function($){
+(function($) {
 
-	/**
-	 * jQuery ScrollTo (balupton edition)
-	 * @version 1.0.1
-	 * @date August 31, 2010
-	 * @since 0.1.0, August 27, 2010
-     * @package jquery-scrollto {@link http://www.balupton/projects/jquery-scrollto}
-	 * @author Benjamin "balupton" Lupton {@link http://www.balupton.com}
-	 * @copyright (c) 2010 Benjamin Arthur Lupton {@link http://www.balupton.com}
-	 * @license GNU Affero General Public License version 3 {@link http://www.gnu.org/licenses/agpl-3.0.html}
-	 */
-	if ( !($.ScrollTo||false) ) {
-		$.ScrollTo = {
-			/**
-			 * The Default Configuration
-			 */
-			config: {
-				duration: 400,
-				easing: 'swing',
-				callback: undefined,
-				durationMode: 'each'
-			},
+var version = '1.4.4',
+    defaults = {
+      exclude: [],
+      excludeWithin:[],
+      offset: 0,
+      direction: 'top', // one of 'top' or 'left'
+      scrollElement: null, // jQuery set of elements you wish to scroll (for $.smoothScroll).
+                          //  if null (default), $('html, body').firstScrollable() is used.
+      scrollTarget: null, // only use if you want to override default behavior
+      beforeScroll: function() {},  // fn(opts) function to be called before scrolling occurs. "this" is the element(s) being scrolled
+      afterScroll: function() {},   // fn(opts) function to be called after scrolling occurs. "this" is the triggering element
+      easing: 'swing',
+      speed: 400,
+      autoCoefficent: 2 // coefficient for "auto" speed
+    },
 
-			/**
-			 * Configure ScrollTo
-			 */
-			configure: function(options){
-				var ScrollTo = $.ScrollTo;
+    getScrollable = function(opts) {
+      var scrollable = [],
+          scrolled = false,
+          dir = opts.dir && opts.dir == 'left' ? 'scrollLeft' : 'scrollTop';
 
-				// Apply Options to Config
-				$.extend(ScrollTo.config, options||{});
+      this.each(function() {
 
-				// Chain
-				return this;
-			},
+        if (this == document || this == window) { return; }
+        var el = $(this);
+        if ( el[dir]() > 0 ) {
+          scrollable.push(this);
+          return;
+        }
 
-			/**
-			 * Perform the Scroll Animation for the Collections
-			 * We use $inline here, so we can determine the actual offset start for each overflow:scroll item
-			 * Each collection is for each overflow:scroll item
-			 */
-			scroll: function(collections, config){
-				var ScrollTo = $.ScrollTo;
+        el[dir](1);
+        scrolled  = el[dir]() > 0;
+        el[dir](0);
+        if ( scrolled ) {
+          scrollable.push(this);
+          return;
+        }
 
-				// Determine the Scroll
-	    		var	collection = collections.pop(),
-					$container = collection.$container,
-					$target = collection.$target;
+      });
 
-				// Prepare the Inline Element of the Container
-				var $inline = $('<span/>').css({
-					'position': 'absolute',
-					'top': '0px',
-					'left': '0px'
-				});
-				var position = $container.css('position');
+      if ( opts.el === 'first' && scrollable.length ) {
+        scrollable = [ scrollable.shift() ];
+      }
 
-				// Insert the Inline Element of the Container
-				$container.css('position','relative');
-				$inline.appendTo($container);
+      return scrollable;
+    },
+    isTouch = 'ontouchend' in document;
 
-				// Determine the Offsets
-				var	startOffset = $inline.offset().top,
-					targetOffset = $target.offset().top,
-					offsetDifference = targetOffset - startOffset;
+$.fn.extend({
+  scrollable: function(dir) {
+    var scrl = getScrollable.call(this, {dir: dir});
+    return this.pushStack(scrl);
+  },
+  firstScrollable: function(dir) {
+    var scrl = getScrollable.call(this, {el: 'first', dir: dir});
+    return this.pushStack(scrl);
+  },
 
-				// Reset the Inline Element of the Container
-				$inline.remove();
-				$container.css('position',position);
+  smoothScroll: function(options) {
+    options = options || {};
+    var opts = $.extend({}, $.fn.smoothScroll.defaults, options),
+        locationPath = $.smoothScroll.filterPath(location.pathname);
 
-				// Prepare the callback
-				var callback = function(event){
-					// Check
-					if ( collections.length === 0 ) {
-						// Callback
-						if ( typeof config.callback === 'function' ) {
-							config.callback.apply(this,[event]);
-						}
-					}
-					else {
-						// Recurse
-						ScrollTo.scroll(collections,config);
-					}
-					// Return true
-					return true;
-				};
+    this.die('click.smoothscroll').live('click.smoothscroll', function(event) {
 
-				// Perform the Scroll
-				$container.animate({
-					'scrollTop': offsetDifference+'px'
-				}, config.duration, config.easing, callback);
+      var clickOpts = {}, link = this, $link = $(this),
+          hostMatch = ((location.hostname === link.hostname) || !link.hostname),
+          pathMatch = opts.scrollTarget || ( $.smoothScroll.filterPath(link.pathname) || locationPath ) === locationPath,
+          thisHash = escapeSelector(link.hash),
+          include = true;
 
-				// Return true
-				return true;
-			},
+      if ( !opts.scrollTarget && (!hostMatch || !pathMatch || !thisHash) ) {
+        include = false;
+      } else {
+        var exclude = opts.exclude, elCounter = 0, el = exclude.length;
+        while (include && elCounter < el) {
+          if ($link.is(escapeSelector(exclude[elCounter++]))) {
+            include = false;
+          }
+        }
 
-			/**
-			 * ScrollTo the Element using the Options
-			 */
-			fn: function(options){
-				var ScrollTo = $.ScrollTo;
+        var excludeWithin = opts.excludeWithin, ewlCounter = 0, ewl = excludeWithin.length;
+        while ( include && ewlCounter < ewl ) {
+          if ($link.closest(excludeWithin[ewlCounter++]).length) {
+            include = false;
+          }
+        }
+      }
 
-				// Prepare
-				var	$target = $(this);
-				if ( $target.length === 0 ) {
-					// Chain
-					return this;
-				}
+      if ( include ) {
+        event.preventDefault();
 
-				// Fetch
-				var	$container = $target.parent(),
-					collections = [];
+        $.extend( clickOpts, opts, {
+          scrollTarget: opts.scrollTarget || thisHash,
+          link: link
+        });
 
-				// Handle Options
-				config = $.extend({},ScrollTo.config,options);
+        $.smoothScroll( clickOpts );
+      }
+    });
 
-				// Cycle through the containers
-				while ( $container.length === 1 && !$container.is('body') && !($container.get(0) === document) ) {
-					// Check Container
-					var container = $container.get(0);
-					if ( $container.css('overflow-y') !== 'visible' && container.scrollHeight !== container.clientHeight ) {
-						// Push the Collection
-						collections.push({
-							'$container': $container,
-							'$target': $target
-						});
-						// Update the Target
-						$target = $container;
-					}
-					// Update the Container
-					$container = $container.parent();
-				}
+    return this;
 
-				// Add the final collection
-				collections.push({
-					'$container': $($.browser.msie ? 'html' : 'body'),
-					'$target': $target
-				});
+  }
+});
 
-				// Adjust the Config
-				if ( config.durationMode === 'all' ) {
-					config.duration /= collections.length;
-				}
+$.smoothScroll = function(options, px) {
+  var opts, $scroller, scrollTargetOffset, speed,
+      scrollerOffset = 0,
+      offPos = 'offset',
+      scrollDir = 'scrollTop',
+      aniprops = {},
+      useScrollTo = false,
+      scrollprops = [];
 
-				// Handle
-				ScrollTo.scroll(collections,config);
+  if ( typeof options === 'number') {
+    opts = $.fn.smoothScroll.defaults;
+    scrollTargetOffset = options;
+  } else {
+    opts = $.extend({}, $.fn.smoothScroll.defaults, options || {});
+    if (opts.scrollElement) {
+      offPos = 'position';
+      if (opts.scrollElement.css('position') == 'static') {
+        opts.scrollElement.css('position', 'relative');
+      }
+    }
 
-				// Chain
-				return this;
-			},
+    scrollTargetOffset = px ||
+                        ( $(opts.scrollTarget)[offPos]() &&
+                        $(opts.scrollTarget)[offPos]()[opts.direction] ) ||
+                        0;
+  }
+  opts = $.extend({link: null}, opts);
+  scrollDir = opts.direction == 'left' ? 'scrollLeft' : scrollDir;
 
-			/**
-			 * Construct
-			 */
-			construct: function(options){
-				var ScrollTo = $.ScrollTo;
+  if ( opts.scrollElement ) {
+    $scroller = opts.scrollElement;
+    scrollerOffset = $scroller[scrollDir]();
+  } else {
+    $scroller = $('html, body').firstScrollable();
+    useScrollTo = isTouch && 'scrollTo' in window;
+  }
 
-				// Apply our jQuery Function
-				$.fn.ScrollTo = ScrollTo.fn;
+  aniprops[scrollDir] = scrollTargetOffset + scrollerOffset + opts.offset;
 
-				// Apply our Options to the Default Config
-				ScrollTo.config = $.extend(ScrollTo.config,options);
+  opts.beforeScroll.call($scroller, opts);
 
-				// Chain
-				return this;
-			}
-		};
+  if ( useScrollTo ) {
+    scrollprops = (opts.direction == 'left') ? [aniprops[scrollDir], 0] : [0, aniprops[scrollDir]];
+    window.scrollTo.apply(window, scrollprops);
+    opts.afterScroll.call(opts.link, opts);
 
-		// Construct It
-		$.ScrollTo.construct();
-	}
-	else {
-		window.console.warn("$.ScrollTo has already been defined...");
-	}
+  } else {
+    speed = opts.speed;
+
+    // automatically calculate the speed of the scroll based on distance / coefficient
+    if (speed === 'auto') {
+      // if aniprops[scrollDir] == 0 then we'll use scrollTop() value instead
+      speed = aniprops[scrollDir] || $scroller.scrollTop();
+      // divide the speed by the coefficient
+      speed = speed / opts.autoCoefficent;
+    }
+
+    $scroller.animate(aniprops,
+    {
+      duration: speed,
+      easing: opts.easing,
+      complete: function() {
+        opts.afterScroll.call(opts.link, opts);
+      }
+    });
+  }
+
+};
+
+$.smoothScroll.version = version;
+$.smoothScroll.filterPath = function(string) {
+  return string
+    .replace(/^\//,'')
+    .replace(/(index|default).[a-zA-Z]{3,4}$/,'')
+    .replace(/\/$/,'');
+};
+
+// default options
+$.fn.smoothScroll.defaults = defaults;
+
+function escapeSelector (str) {
+  return str.replace(/(:|\.)/g,'\\$1');
+}
 
 })(jQuery);

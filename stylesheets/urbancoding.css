@@ -145,7 +145,8 @@ header.primary {
 section.home {
   position: relative;
   border-top: 0;
-  background: url("../images/home-bg-ground.jpg") bottom left repeat-x; }
+  background: url("../images/home-bg-ground.jpg") bottom left repeat-x;
+  overflow: hidden; }
   section.home .cloud {
     background-image: url("../images/home-clouds.png");
     background-repeat: no-repeat;
@@ -178,7 +179,7 @@ section.home {
     z-index: 2;
     min-height: 625px;
     height: 100%;
-    background: url("../images/home-city.png") -871px 0 repeat-x transparent;
+    background: url("../images/home-city.png") -871px bottom repeat-x transparent;
     background-position-y: bottom; }
   section.home .sky {
     position: absolute;

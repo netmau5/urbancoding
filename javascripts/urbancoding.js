@@ -83,9 +83,9 @@ $(function(){
     $this.css({ opacity: 0.25 }).scrollspy({
       min: $('section.home').outerHeight() + $('section.home').offset().top - $(window).height() + 300 + (accountForHeader ? -header.outerHeight(true) + 1: 0),
       max: 25000,
-      onEnter: function(element, position) {
+      onEnter: _.debounce(function(element, position) {
         $this.animate({ opacity: 1 }, 1200);
-      }
+      }, 50)
     });
   });
 
@@ -186,14 +186,14 @@ $(function(){
   
   //navigation
   $('header.primary h1').click(function(){
-    $(document.body).ScrollTo({duration: 500});
+    $.smoothScroll({speed: 500, scrollTarget: document.body });
   })
   
-  var li = $('header.primary nav li');
-  $('a', li).click(function(e){
-    var $this = $(this);
-    e.stopPropagation();
-    $($this.attr('href')).ScrollTo( {duration:500} );
-    return false;
-  });
+  var header = $('header.primary');
+  function bindNavScrolling() {
+    $('header.primary nav li a').smoothScroll( { speed: 500, offset: header.css('position') === 'fixed' ? -header.outerHeight() : 0 } );
+  }
+  bindNavScrolling();
+  $(window).on('resize', _.debounce(bindNavScrolling, 500));
+  
 });

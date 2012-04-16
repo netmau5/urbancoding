@@ -193,6 +193,7 @@ section.home {
   position: relative;
   border-top: 0;
   background: url('../images/home-bg-ground.jpg') bottom left repeat-x;
+  overflow: hidden;
   
   .cloud {
     background-image: url('../images/home-clouds.png');
@@ -236,7 +237,7 @@ section.home {
     z-index: 2; 
     min-height: 625px;
     height: 100%;
-    background: url('../images/home-city.png') -871px 0 repeat-x transparent;
+    background: url('../images/home-city.png') -871px bottom repeat-x transparent;
     background-position-y: bottom;
   }
   
