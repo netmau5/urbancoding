@@ -665,11 +665,16 @@ section.about-us {
       }
     }
     
-    .trent-kocurek { 
-      
+    .dave-jafari, .trent-kocurek, .despi-raggousis, .eduardo-kortright {
       .copy {
         height: 500px;
         padding: 120px 450px 20px 30px;
+      }
+    }
+    
+    .trent-kocurek { 
+      
+      .copy {
         background: url('../images/aboutus-trentk.png') 625px unquote($height - 580 + "px") no-repeat;
       }
       

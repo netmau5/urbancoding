@@ -174,7 +174,7 @@ $(function(){
     
     $(this).parent().append(msg.fadeIn());
     $(this).remove();
-    
+     
     return false;
   });
   
