@@ -92,6 +92,7 @@ $(function(){
   // portfolio
   var portfolio = [
     { title: "Selected Logos", smallImage: "images/portfolio-logos-small.jpg", overview: "sparkmuse.html" },
+    { title: "Urban Coding v2", smallImage: "images/portfolio-ucv2-small.jpg", overview: "sparkmuse.html" },
     { title: "Jenx", smallImage: "images/portfolio-jenx-small.jpg", overview: "sparkmuse.html" },
     { title: "Sparkmuse", smallImage: "images/portfolio-sparkmuse-small.jpg", overview: "sparkmuse.html" },
     { title: "Princeton Public Library", smallImage: "images/portfolio-princeton-small.jpg", overview: "sparkmuse.html" },
