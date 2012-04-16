@@ -102,17 +102,24 @@ section.contact {
   .contact-us {
     margin: 0 15px;
     
-    form .name { display: none; }
-    form .email { 
-      float: none; width: 100%;
+    form {
+      width: 290px;
+      margin: 0 auto;
       
-      input { width: 278px; }
-    }
-    form .message {
-      float: none; width: 100%;
+      .name { display: none; }
+      .email { 
+        float: none; width: 100%;
+
+        input { width: 276px; }
+      }
+      .message {
+        float: none; width: 100%;
+
+        textarea { width: 276px; }
+      }
       
-      textarea { width: 278px; }
     }
+    
   }
   
   .media { display: none; }

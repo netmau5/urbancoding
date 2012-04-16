@@ -1,7 +1,7 @@
 3.1.15 (Brainy Betty)
-a14a109df55b6f538f7bac7e99836f7bfb4348ee
+c756a74281c6190f5067346eaa647cfd28842a4a
 o:Sass::Tree::RootNode
-:@template"+E/*
+:@template"BE/*
   GLOSSARY
   
   <BASE>
@@ -239,7 +239,7 @@ section.home {
     z-index: 2; 
     min-height: 625px;
     height: 100%;
-    background: url('../images/home-city.png') 0 131px no-repeat transparent;
+    background: url('../images/home-city.png') -871px 0 repeat-x transparent;
     background-position-y: bottom;
   }
   
@@ -839,12 +839,12 @@ section.about-us {
 }
 
 // Landscape phone to portrait tablet
-@media (max-width: 768px) {
+@media (min-width: 481px) and (max-width: 979px) {
    @import "tablet"
 }
 
 // landscape tablet and desktop
-@media (min-width: 768px) { 
+@media (min-width: 481px) { 
   header.primary {
     position: fixed;
     top: 0;
@@ -1011,8 +1011,7 @@ width;6i ;	[ o;&;';(;o;	;[o;;i ;iß;@;@$;[ ;"0o;;iÿ|;iß;@;
 width;6i ;	[ o;&;';(;o;	;[o;;i ;iæ;@;@$;[ ;"0o;;iÿE;iæ;@;[ ;["px;"-187px;iæ;@;; ;iæ;@;["background-position;6i ;	[ o;&;';(;o;;"60%;@;;;iç;@;["top;6i ;	[ ;7T;A[".cloud-4o;8;9o;:;;" ;<[o;=;<[o;>;;@;<[o;B;;@;iê;["container;iê;iê;iê;@;6i ;	[o;&;';(;o;;"relative;@;;;ië;@;["position;6i ;	[ o;&;';(;o;;"2;@;;;iì;@;["z-index;6i ;	[ o;&;';(;o;;"
 625px;@;;;ií;@;["min-height;6i ;	[ o;&;';(;o;;"	100%;@;;;iî;@;["height;6i ;	[ o;&;';(;o;	;[
 o;
-;[o;	;"../images/home-city.png;iï;@;;!;iï;@;"url;{ o;;i ;iï;@;@$;[ ;"0o;;iƒ;iï;@;[ ;["px;"
-131pxo;	;"no-repeat;iï;@;;o;	;"transparent;iï;@;;;iï;@;; ;iï;@;["background;6i ;	[ o;&;';(;o;;"bottom;@;;;ið;@;["background-position-y;6i ;	[ ;7T;A[".containero;8;9o;:;;" ;<[o;=;<[o;>;;@T;<[o;B;;@T;ió;["sky;ió;ió;ió;@;6i ;	[o;&;';(;o;;"absolute;@;;;iô;@;["position;6i ;	[ o;&;';(;o;;"0;@;;;iõ;@;["top;6i ;	[ o;&;';(;o;	;[	o;
+;[o;	;"../images/home-city.png;iï;@;;!;iï;@;"url;{ o;;iþ™ü;iï;@;[ ;["px;"-871pxo;;i ;iï;@;@$;[ ;"0o;	;"repeat-x;iï;@;;o;	;"transparent;iï;@;;;iï;@;; ;iï;@;["background;6i ;	[ o;&;';(;o;;"bottom;@;;;ið;@;["background-position-y;6i ;	[ ;7T;A[".containero;8;9o;:;;" ;<[o;=;<[o;>;;@T;<[o;B;;@T;ió;["sky;ió;ió;ió;@;6i ;	[o;&;';(;o;;"absolute;@;;;iô;@;["position;6i ;	[ o;&;';(;o;;"0;@;;;iõ;@;["top;6i ;	[ o;&;';(;o;	;[	o;
 ;[o;	;"../images/home-bg-sky.jpg;iö;@;;!;iö;@;"url;{ o;	;"top;iö;@;;o;	;"	left;iö;@;;o;	;"repeat-x;iö;@;;;iö;@;; ;iö;@;["background;6i ;	[ o;&;';(;o;;"
 572px;@;;;i÷;@;["min-height;6i ;	[ o;&;';(;o;;"	100%;@;;;iø;@;["height;6i ;	[ o;&;';(;o;;iù;iù;@;@$;[ ;"-2;iù;@;["z-index;6i ;	[ o;&;';(;o;;"	100%;@;;;iú;@;["
 width;6i ;	[ ;7T;A["	.skyo;8;9o;:;;" ;<[o;=;<[o;>;;@™;<[o;B;;@™;iý;["ground;iý;iý;iý;@;6i ;	[
@@ -1250,8 +1249,8 @@ hover;;E;i6;i6;i6;@;6i ;	[o;&;';(;o;	;[o;;i ;i7;@;@$;
 ;i ;["$/* Landscape phones and down */;iA;@;	[ ;0o:Sass::Tree::MediaNode:@query["(max-width: 480px);" ;iB;@;6i ;	[o;
 ;0;iC;"
 phone;@;	[ ;7To;
-;i ;["-/* Landscape phone to portrait tablet */;iF;@;	[ ;0o;K;L["(max-width: 768px);" ;iG;@;6i ;	[o;
+;i ;["-/* Landscape phone to portrait tablet */;iF;@;	[ ;0o;K;L[".(min-width: 481px) and (max-width: 979px);" ;iG;@;6i ;	[o;
 ;0;iI;"tablet;@;	[ ;7To;
-;i ;["'/* landscape tablet and desktop */;iK;@;	[ ;0o;K;L["(min-width: 768px);" ;iL;@;6i ;	[o;8;9o;:;;" ;<[o;=;<[o;>;;@–;<[o;?	;;@–;iM;@0;["headero;B;;@–;iM;["primary;iM;iM;iM;@;6i ;	[o;&;';(;o;;"
+;i ;["'/* landscape tablet and desktop */;iK;@;	[ ;0o;K;L["(min-width: 481px);" ;iL;@;6i ;	[o;8;9o;:;;" ;<[o;=;<[o;>;;@–;<[o;?	;;@–;iM;@0;["headero;B;;@–;iM;["primary;iM;iM;iM;@;6i ;	[o;&;';(;o;;"
 fixed;@;;;iN;@;["position;6i ;	[ o;&;';(;o;;"0;@;;;iO;@;["top;6i ;	[ o;&;';(;o;;"	100%;@;;;iP;@;["
 width;6i ;	[ ;7T;A["header.primaryo;8;9o;:;;" ;<[o;=;<[o;>;;@¹;<[o;?	;;@¹;iR;@0;["sectiono;B;;@¹;iR;["	home;iR;iR;iR;@;6i ;	[o;&;';(;o;;"	69px;@;;;iS;@;["margin-top;6i ;	[ ;7T;A["section.home;7T;7T

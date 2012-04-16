@@ -11480,7 +11480,7 @@ $(function(){
   function expandHome() {
     var header = $('header.primary'),
         accountForHeader = header.css('position') !== 'fixed';
-    expandToWindowHeight('section.home', 818, accountForHeader ? -header.outerHeight(true) + 1: 0);
+    expandToWindowHeight('section.home', 860, accountForHeader ? -header.outerHeight(true) + 1: 0);
   }
   
   var interval = 0, 
@@ -11531,7 +11531,8 @@ $(function(){
   }, interval);
   
   //services
-  var accountForHeader = header.css('position') !== 'fixed';
+  var header = $('header.primary'),
+      accountForHeader = header.css('position') !== 'fixed';
   $('section.services .major').each(function(){
     var $this = $(this);
     $this.css({ opacity: 0.25 }).scrollspy({
@@ -11614,34 +11615,6 @@ $(function(){
     return false;
   });
   
-  //navigation
-  $('header.primary h1').click(function(){
-    $(document.body).ScrollTo({duration: 500});
-  })
-  
-  var li = $('header.primary nav li');
-  $('a', li).click(function(e){
-    var $this = $(this);
-    e.stopPropagation();
-    $($this.attr('href')).ScrollTo( {duration:500} );
-    return false;
-  });
-  
-  var headerHeight = $('header.primary').outerHeight();
-  $('section').each(function(){
-    var $this = $(this);
-    $this.scrollspy({
-      min: $this.offset().top - headerHeight,
-      max: $this.offset().top + $this.outerHeight() - headerHeight - 1,
-      onEnter: function(element, position) {
-        $('a[href=#' + $(element).attr('id') + ']', li).parent().addClass('active');
-      },
-      onLeave: function(element, position) {
-        $('a[href=#' + $(element).attr('id') + ']', li).parent().removeClass('active');
-      }
-    });
-  });
-  
   //contact us
   $(".contact input, .contact textarea")
       .focus(function() { $(this).addClass("selected"); })
@@ -11666,4 +11639,16 @@ $(function(){
   expandContact();
   $(window).on('resize', _(expandContact).debounce(300));
   
+  //navigation
+  $('header.primary h1').click(function(){
+    $(document.body).ScrollTo({duration: 500});
+  })
+  
+  var li = $('header.primary nav li');
+  $('a', li).click(function(e){
+    var $this = $(this);
+    e.stopPropagation();
+    $($this.attr('href')).ScrollTo( {duration:500} );
+    return false;
+  });
 });

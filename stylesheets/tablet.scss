@@ -1,0 +1,128 @@
+section.home {
+  
+  
+  .container {
+    background-position-x: 135px;
+    background-repeat: no-repeat;
+  }
+  
+  .elevator-pitch {
+    width: 430px;
+    margin: 0 0 0 -215px;
+    left: 50%;
+    top: 20%;
+  }
+}
+
+section.services {
+  .primary {
+    background-position: 380px 0;
+    
+    .major {
+      background-image: none;
+      padding: 0 0 30px 0;
+    }
+  }
+  
+  .secondary {
+    div:first-child h4 {
+      white-space: nowrap;
+      overflow: hidden;
+      width: 50px;
+    };
+  }
+}
+
+section.portfolio {
+  height: 525px;
+  
+  .projects {
+    background-image: none;
+    width: 100%;
+    position: static;
+    
+    .visuals {
+      height: 379px; 
+      margin: 10px 0;
+      
+      .visual {
+        width: 100%;
+        height: auto;
+        
+        img {
+          width: 100%;
+          position: static;
+        }
+      }
+      
+      .visual::before {
+        height: 380px;
+        bottom: 3px;
+        left: -26px;
+      }
+      
+      .visual::after {
+        height: 380px;
+        bottom: 3px;
+        right: -26px;
+      }
+    }
+    
+    .control-bar {
+      h3, a {
+        color: #4e2c17;
+        text-shadow: none;
+        font-size: 18px;
+      }
+    }
+  }
+  
+}
+
+section.about-us {
+  
+  .content {
+    
+    .our-values {
+      .copy {
+        padding: 30px 300px 0 0;
+        
+        .headline {
+          left: 450px;
+          top: 170px;
+          font-size: 24px;
+          line-height: 36px;
+          width: 260px;
+        }
+      }
+    }
+    .how-we-work {
+      .copy {
+        padding: 30px 5px 0 240px;
+        .headline { left: 5px; }
+      }
+    }
+    
+    .trent-kocurek {
+      .copy {
+        padding: 120px 250px 20px 30px;
+        background-position-x: 500px;
+      }
+    }
+  }
+}
+
+section.contact {
+  
+  .contact-us {
+    
+    .name, .email {
+      float: none;
+      width: 100%;
+    }
+    
+    input, textarea {
+      width: 462px;
+    }
+  }
+}
