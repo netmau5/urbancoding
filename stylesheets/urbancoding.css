@@ -506,6 +506,8 @@ section.about-us {
     section.about-us .content .dave-jafari .copy, section.about-us .content .trent-kocurek .copy, section.about-us .content .despi-raggousis .copy, section.about-us .content .eduardo-kortright .copy {
       height: 500px;
       padding: 120px 450px 20px 30px; }
+    section.about-us .content .dave-jafari .copy {
+      background: url("../images/aboutus-davej.png") 625px 40px no-repeat; }
     section.about-us .content .trent-kocurek .copy {
       background: url("../images/aboutus-trentk.png") 625px 40px no-repeat; }
 

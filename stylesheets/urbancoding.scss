@@ -672,13 +672,9 @@ section.about-us {
       }
     }
     
-    .trent-kocurek { 
-      
-      .copy {
-        background: url('../images/aboutus-trentk.png') 625px unquote($height - 580 + "px") no-repeat;
-      }
-      
-    }
+    .dave-jafari .copy { background: url('../images/aboutus-davej.png') 625px unquote($height - 580 + "px") no-repeat; }
+    
+    .trent-kocurek .copy { background: url('../images/aboutus-trentk.png') 625px unquote($height - 580 + "px") no-repeat; }
   }
   
 }
