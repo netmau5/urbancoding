@@ -378,7 +378,8 @@ section.about-us {
     section.about-us header h2 {
       font-size: 32px;
       line-height: 80px;
-      float: left; }
+      float: left;
+      font-weight: 700; }
     section.about-us header ul.statements {
       position: absolute;
       left: 50%;
@@ -532,7 +533,8 @@ section.about-us {
   color: #542437; }
 
 .contact h2 {
-  font-size: 32px; }
+  font-size: 32px;
+  font-weight: 700; }
 
 .contact h3 {
   font-size: 24px; }
