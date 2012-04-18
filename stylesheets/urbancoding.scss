@@ -372,7 +372,7 @@ section.portfolio {
   }
   
   .projects {
-    background: url('../images/portfolio-container.png') 0px 0 no-repeat;
+    background: url('../images/portfolio-container2.png') 0px 0 no-repeat;
     height: 541px;
     width: 945px;
     position: relative;
@@ -433,16 +433,19 @@ section.portfolio {
         
         a {
           position: absolute;
-          right: -1px;
-          text-indent: 30px;
-          width: 179px;
-          background: url('../images/portfolio-button-arrow.png') 132px 9px no-repeat;
+          right: 6px;
+          text-indent: 20px;
+          width: 134px;
+          height: 45px;
+          background: url("../images/portfolio-button.png") 0 0 no-repeat;
+          font-size: 15px !important;
+          line-height: 39px;
+          top: 6px;
           
           &:active {
-            color: #ac785d;
-            background: url('../images/portfolio-button-pressed.png') top left no-repeat;
-            padding-top: 4px;
-            top: -2px;
+            color: #cf9d83;
+            background-position: 0 -50px;
+            line-height: 42px;
           }
           
           &:hover {
