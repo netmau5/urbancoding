@@ -166,7 +166,7 @@ header.primary {
       a {
         font-size: 18px;
         color: white;
-        
+        text-shadow: 0 0 0 #fff;
         &:hover { color: white; }
       }
       .subtext {
@@ -174,11 +174,11 @@ header.primary {
         display: block;
         color: #cecece;
       }
-    }
-    
-    li.active {
-      a { font-weight: bold; }
-      .subtext { color: white; }
+      
+      a.selected {
+        font-weight: bold;
+        .subtext { color: white; }
+      }
     }
   }
 

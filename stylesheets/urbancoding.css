@@ -128,17 +128,18 @@ header.primary {
         padding-left: 0; }
       header.primary nav li a {
         font-size: 18px;
-        color: white; }
+        color: white;
+        text-shadow: 0 0 0 #fff; }
         header.primary nav li a:hover {
           color: white; }
       header.primary nav li .subtext {
         font-size: 14px;
         display: block;
         color: #cecece; }
-    header.primary nav li.active a {
-      font-weight: bold; }
-    header.primary nav li.active .subtext {
-      color: white; }
+      header.primary nav li a.selected {
+        font-weight: bold; }
+        header.primary nav li a.selected .subtext {
+          color: white; }
 
 /* END <HEADER> */
 /* BEGIN <HOME> */

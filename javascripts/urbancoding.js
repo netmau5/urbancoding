@@ -1,4 +1,4 @@
-//@codekit-prepend "jquery-1.7.2.js", "bootstrap.js", "underscore.js", "jquery-scrollto.js", "jquery-scrollspy.js", "jquery-typewriter.js";
+//@codekit-prepend "jquery-1.7.2.js", "bootstrap.js", "underscore.js", "jquery-scrollto.js", "jquery-scrollspy.js", "jquery-typewriter.js", "jquery.animate-textshadow.js";
 
 $(function(){
   
@@ -196,5 +196,44 @@ $(function(){
   }
   bindNavScrolling();
   $(window).on('resize', _.debounce(bindNavScrolling, 500));
+  
+  function onScrollSectionEnter(element) {
+    var section = $(element);
+    $('header.primary nav a').filter('*[href=#' + section.attr('id') + ']')
+        .animate({ textShadow: "rgba(255,255,255,0.5) 0px 0px 10px" }, 500)
+        .addClass('selected');
+  }
+  
+  function onScrollSectionExit(element) {
+    var section = $(element);
+    $('header.primary nav a').filter('*[href=#' + section.attr('id') + ']')
+        .removeClass('selected')
+        .animate({ textShadow: "#000 0 0 0" }, 500);
+  }
+  
+  function newScrollSpyOptions(section, header) {
+    return {
+      min: function(){
+        var fixedHeader = header.css('position') === 'fixed';
+        return section.offset().top - 
+            (fixedHeader ? header.outerHeight(true) : 0)
+      },
+      max: function(){
+        var fixedHeader = header.css('position') === 'fixed';
+        return section.offset().top + 
+            section.outerHeight(true) -
+            (fixedHeader ? header.outerHeight(true) : 0) -
+            1;
+      },
+      onEnter: onScrollSectionEnter,
+      onLeave: onScrollSectionExit
+    };
+  }
+  
+  var header = $('header.primary');
+  $('section.services, section.portfolio, section.about-us, section.contact').each(function(){
+    var $this = $(this);
+    $this.scrollspy(newScrollSpyOptions($this, header));
+  });
   
 });
