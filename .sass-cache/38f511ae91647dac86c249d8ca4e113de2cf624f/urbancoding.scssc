@@ -1,5 +1,5 @@
 3.1.15 (Brainy Betty)
-b95a340524ec793b89d402853d1610d5fe5e0b73
+16feb1596d6e72335ccf0689c9cc476bcd79135b
 o:Sass::Tree::RootNode
 :@template"F/*
   GLOSSARY
@@ -277,9 +277,9 @@ section.home {
     
     span { display: block; }
     
-    .development { color: #00daf9; letter-spacing: 1px; word-spacing: 4px; }
+    .development { color: #00d8f5; letter-spacing: 1px; word-spacing: 4px; }
     .cms { color: #2ab2c3; letter-spacing: 1px; }
-    .ui { color: #00daf9; letter-spacing: 4px; word-spacing: 1px; }
+    .ui { color: #00d8f5; letter-spacing: 4px; word-spacing: 1px; }
     .graphic-design { color: #2ab2c3; letter-spacing: 5px; word-spacing: -1px; }
     .how { color: #ff8400; letter-spacing: 3px; word-spacing: 4px; } 
   }
@@ -1025,9 +1025,9 @@ width;6i ;	[ ;7T;A[".groundo;8;9o;:;;" ;<[o;=;<[o;>;;@Ö;<[o;?	;;@Ö;
 ;i
 ;i
 ;@;6i ;	[o;&;';(;o;;"absolute;@;;;i;@;["position;6i ;	[ o;&;';(;o;;"15%;@;;;i;@;["top;6i ;	[ o;&;';(;o;;"	40px;@;;;i;@;["	left;6i ;	[ o;&;';(;o;;"	32px;@;;;i;@;["font-size;6i ;	[ o;&;';(;o;$	;i;%"font_weight_bold;@;"font-weight-bold;i;@;["font-weight;6i ;	[ o;&;';(;o;;"uppercase;@;;;i;@;["text-transform;6i ;	[ o;&;';(;o;;"	40px;@;;;i;@;["line-height;6i ;	[ o;8;9o;:;;" ;<[o;=;<[o;>;;@$;<[o;?	;;@$;i;@0;["	span;i;i;i;@;6i ;	[o;&;';(;o;;"
-block;@;;;i;@;["display;6i ;	[ ;7T;A["	spano;8;9o;:;;" ;<[o;=;<[o;>;;@8;<[o;B;;@8;i;["development;i;i;i;@;6i ;	[o;&;';(;o;;"#00daf9;@;;;i;@;["
+block;@;;;i;@;["display;6i ;	[ ;7T;A["	spano;8;9o;:;;" ;<[o;=;<[o;>;;@8;<[o;B;;@8;i;["development;i;i;i;@;6i ;	[o;&;';(;o;;"#00d8f5;@;;;i;@;["
 color;6i ;	[ o;&;';(;o;;"1px;@;;;i;@;["letter-spacing;6i ;	[ o;&;';(;o;;"4px;@;;;i;@;["word-spacing;6i ;	[ ;7T;A[".developmento;8;9o;:;;" ;<[o;=;<[o;>;;@X;<[o;B;;@X;i;["cms;i;i;i;@;6i ;	[o;&;';(;o;;"#2ab2c3;@;;;i;@;["
-color;6i ;	[ o;&;';(;o;;"1px;@;;;i;@;["letter-spacing;6i ;	[ ;7T;A["	.cmso;8;9o;:;;" ;<[o;=;<[o;>;;@r;<[o;B;;@r;i;["ui;i;i;i;@;6i ;	[o;&;';(;o;;"#00daf9;@;;;i;@;["
+color;6i ;	[ o;&;';(;o;;"1px;@;;;i;@;["letter-spacing;6i ;	[ ;7T;A["	.cmso;8;9o;:;;" ;<[o;=;<[o;>;;@r;<[o;B;;@r;i;["ui;i;i;i;@;6i ;	[o;&;';(;o;;"#00d8f5;@;;;i;@;["
 color;6i ;	[ o;&;';(;o;;"4px;@;;;i;@;["letter-spacing;6i ;	[ o;&;';(;o;;"1px;@;;;i;@;["word-spacing;6i ;	[ ;7T;A[".uio;8;9o;:;;" ;<[o;=;<[o;>;;@’;<[o;B;;@’;i;["graphic-design;i;i;i;@;6i ;	[o;&;';(;o;;"#2ab2c3;@;;;i;@;["
 color;6i ;	[ o;&;';(;o;;"5px;@;;;i;@;["letter-spacing;6i ;	[ o;&;';(;o;;iú;i;@;[ ;["px;"	-1px;i;@;["word-spacing;6i ;	[ ;7T;A[".graphic-designo;8;9o;:;;" ;<[o;=;<[o;>;;@µ;<[o;B;;@µ;i;["how;i;i;i;@;6i ;	[o;&;';(;o;;"#ff8400;@;;;i;@;["
 color;6i ;	[ o;&;';(;o;;"3px;@;;;i;@;["letter-spacing;6i ;	[ o;&;';(;o;;"4px;@;;;i;@;["word-spacing;6i ;	[ ;7T;A["	.how;7T;A[".elevator-pitch;7T;A["section.homeo;
