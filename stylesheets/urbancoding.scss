@@ -17,11 +17,11 @@
 
 @import "asset/*.png";
 
-@import "bootstrap.css";
+@import "../../urbancoding-framework/stylesheets/bootstrap.css";
 
 $border-transparent-dark: 1px solid rgba(0,0,0,0.3);
 $border-transparent-light: 1px solid rgba(255,255,255,0.3);
-
+ 
 $font-family-primary: "PT Sans Narrow", "Verdana";
 $font-family-body: Georgia;
 $font-weight-bold: 700;
@@ -41,148 +41,11 @@ $font-weight-normal: 400;
 
 /* END <BASE> */
 
-/* BEGIN <TYPOGRAPHY> */
-
-body, h1, h2, h3, h4, h5, h6 {
-  font-family: $font-family-primary;
-  font-weight: $font-weight-normal;
-  letter-spacing: .03em;
-  line-height: 1.5;
-}
-
-p {
-  font-family: $font-family-body;
-  font-size: 16px;
-  line-height: 1.5;
-}
-
-/* END <TYPOGRAPHY> */
-
-/* BEGIN <GENERAL> */
-
-a.button {
-  display:block; 
-  float:left; 
-  line-height:60px; 
-  height:60px; 
-  padding:0 30px 0 66px; 
-  font-size:20px; 
-  letter-spacing: 1px;
-  text-decoration:none; 
-  background:#fbe6e6; 
-  border:solid 1px #914207; 
-  text-transform:uppercase; 
-  font-weight:bold; 
-  color:#914207; 
-  margin-right:20px; 
-  -moz-border-radius:5px; 
-  -khtml-border-radius:5px; 
-  -webkit-border-radius:5px; 
-  border-radius:5px;
-  }
-a.button:hover {
-  color:#652e05; 
-  border-color:#652e05; 
-  -moz-box-shadow:0 2px 2px rgba(80, 80, 80, 0.2); 
-  -webkit-box-shadow:0 2px 2px rgba(80, 80, 80, 0.2); 
-  box-shadow:0 2px 2px rgba(80, 80, 80, 0.2);
-}
-a.button:active {
-  box-shadow: 0;
-  -webkit-box-shadow: 0;
-  -moz-box-shadow: 0;
-  position: relative;
-  top: 2px;
-}
-
-ol, ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-hr {
-  border: 0;
-  border-top: 1px solid #000;
-  border-bottom: 1px solid #fff;
-  border-top: 1px solid rgba(0,0,0,0.1);
-  border-bottom: 1px solid rgba(255,255,255,0.3);
-  filter: alpha(opacity = 30);
-  clear: both;
-  height: 0;
-  margin-bottom: 1em;
-}
-
-section {
-  border-top: $border-transparent-light;
-  border-bottom: $border-transparent-dark;
-}
-
-/* END <GENERAL> */
+@import "../../urbancoding-framework/stylesheets/general";
 
 /* BEGIN <HEADER> */
 
-header.primary {
-  background: url('../images/black-linen.jpg');
-  color: white;
-  border-bottom: $border-transparent-dark;
-  padding: 10px 0;
-  z-index: 999;
-  @include inset-box-shadow(0, -3);
-
-  h1 { cursor: pointer; }
-
-  h1.logo {
-    background: url('../images/logo-header3.png') center center no-repeat;
-    height: 48px;
-    width: 48px;
-    float: left;
-  }
-
-  h1.name {
-    text-transform: uppercase;
-    font-size: 24px;
-    float: left;
-    line-height: 48px;
-    margin: 0 0 0 8px;
-    position: relative;
-    top: 3px;
-    text-shadow: 0 1px 0 black;
-  }
-
-  nav {
-    float: right;
-    line-height: 18px;
-    padding-top: 6px;
-    
-    li {
-      float: left;
-      margin: 0 0 0 20px;
-      padding: 0 0 0 20px;
-      border-left: $border-transparent-light;
-      
-      &:first-child { border-left: 0; margin-left: 0; padding-left: 0; }
-      
-      a {
-        font-size: 18px;
-        color: white;
-        text-shadow: 0 0 0 #fff;
-        &:hover { color: white; }
-      }
-      .subtext {
-        font-size: 14px;
-        display: block;
-        color: #cecece;
-      }
-      
-      a.selected {
-        font-weight: bold;
-        .subtext { color: white; }
-      }
-    }
-  }
-
-}
+@import "../../urbancoding-framework/stylesheets/header";
 
 /* END <HEADER> */
 
